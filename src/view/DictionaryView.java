@@ -21,9 +21,28 @@ public class DictionaryView extends JFrame {
 
     private JMenuItem jmenu_item_home;
     private JMenuItem jmenu_item_exit;
-    private JMenuItem jmenu_item_game;
-    private JMenuItem jmenu_item_translate;
+    private JMenuItem jmenu_item_borrowBooks;
+    private JMenuItem jmenu_item_returnBooks;
+    private JMenuItem jmenu_item_Admin;
     private JMenuItem jmenu_item_help;
+
+    private JPanel jpanel_home;
+    private JPanel jpanel_exit;
+    private JPanel jpanel_borrowBooks;
+    private JPanel jpanel_returnBooks;
+    private JPanel jpanel_Admin;
+    private JPanel jpanel_help;
+
+    // phần đăng nhập của admin
+    private JTextField jtextField_tenDangNhap;
+    private JTextField jtextField_matKhau;
+    private JLabel jlabel_tenDangNhap;
+    private JLabel jlabel_matKhau;
+    private JLabel jLabel_checkDangNhap;
+    private JMenuItem jmenu_item_DangNhap;
+    private JPanel jpanel_DangNhap;
+    private JPanel jpanel_click_DangNhap;
+    private JPanel jpanel_noiDung_DangNhap;
 
 
     private JButton jbutton_start_game;
@@ -32,6 +51,11 @@ public class DictionaryView extends JFrame {
     private JLabel jlabel_1;
     private JLabel jlabel_2;
     private JLabel jlabel_3;
+    private JLabel jlabel_4;
+    private JLabel jlabel_5;
+    private JLabel jlabel_6;
+    private JLabel jlabel_7;
+
 
     private List<JPanel> wordPanels = new ArrayList<>();
 
@@ -58,18 +82,36 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_home.setForeground(new Color(64, 0, 128));
         this.jmenu_item_home.setIcon(new ImageIcon("src\\view\\image\\home.png"));
         this.jmenu_item_home.addActionListener(dictionaryController);
+        this.jpanel_home = new JPanel(new BorderLayout());
+        this.jpanel_home.setBackground(new Color(154,205,50));
+        this.jpanel_home.add(this.jmenu_item_home, BorderLayout.CENTER);
 
-        this.jmenu_item_translate = new JMenuItem("Translate");
-        this.jmenu_item_translate.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_translate.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_translate.setIcon(new ImageIcon("src\\view\\image\\translate.png"));
-        this.jmenu_item_translate.addActionListener(dictionaryController);
+        this.jmenu_item_Admin = new JMenuItem("Admin");
+        this.jmenu_item_Admin.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jmenu_item_Admin.setForeground(new Color(255, 255, 255));
+        this.jmenu_item_Admin.setIcon(new ImageIcon("src\\view\\image\\Admin.png"));
+        this.jmenu_item_Admin.addActionListener(dictionaryController);
+        this.jpanel_Admin = new JPanel(new BorderLayout());
+        this.jpanel_Admin.setBackground(new Color(0, 128, 64));
+        this.jpanel_Admin.add(this.jmenu_item_Admin, BorderLayout.CENTER);
 
-        this.jmenu_item_game = new JMenuItem("Game");
-        this.jmenu_item_game.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_game.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_game.setIcon(new ImageIcon("src\\view\\image\\game.png"));
-        this.jmenu_item_game.addActionListener(dictionaryController);
+        this.jmenu_item_borrowBooks = new JMenuItem("Borrow");
+        this.jmenu_item_borrowBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jmenu_item_borrowBooks.setForeground(new Color(255, 255, 255));
+        this.jmenu_item_borrowBooks.setIcon(new ImageIcon("src\\view\\image\\borrow.png"));
+        this.jmenu_item_borrowBooks.addActionListener(dictionaryController);
+        this.jpanel_borrowBooks = new JPanel(new BorderLayout());
+        this.jpanel_borrowBooks.setBackground(new Color(0, 128, 64));
+        this.jpanel_borrowBooks.add(this.jmenu_item_borrowBooks, BorderLayout.CENTER);
+
+        this.jmenu_item_returnBooks = new JMenuItem("Return");
+        this.jmenu_item_returnBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jmenu_item_returnBooks.setForeground(new Color(255, 255, 255));
+        this.jmenu_item_returnBooks.setIcon(new ImageIcon("src\\view\\image\\return.png"));
+        this.jmenu_item_returnBooks.addActionListener(dictionaryController);
+        this.jpanel_returnBooks = new JPanel(new BorderLayout());
+        this.jpanel_returnBooks.setBackground(new Color(0, 128, 64));
+        this.jpanel_returnBooks.add(this.jmenu_item_returnBooks, BorderLayout.CENTER);
 
         this.jmenu_item_exit = new JMenuItem("Exit");
         this.jmenu_item_exit.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -82,6 +124,9 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_help.setForeground(new Color(255, 255, 255));
         this.jmenu_item_help.setIcon(new ImageIcon("src\\view\\image\\help.png"));
         this.jmenu_item_help.addActionListener(dictionaryController);
+        this.jpanel_help = new JPanel(new BorderLayout());
+        this.jpanel_help.setBackground(new Color(0, 128, 64));
+        this.jpanel_help.add(this.jmenu_item_help, BorderLayout.CENTER);
 
         this.jmenu_item_search = new JMenuItem("Search");
         this.jmenu_item_search.setFont(new Font("Tahoma", Font.BOLD, 40));
@@ -90,13 +135,14 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_search.addActionListener(dictionaryController);
 
         // phần chứa các chức năng
-        this.jpanel_tool = new JPanel(new GridLayout(10, 1));
+        this.jpanel_tool = new JPanel(new GridLayout(12, 1));
         this.jpanel_tool.setBackground(new Color(0, 128, 64));
-        this.jpanel_tool.add(this.jmenu_item_home);
-        this.jpanel_tool.add(this.jmenu_item_translate);
-        this.jpanel_tool.add(this.jmenu_item_game);
+        this.jpanel_tool.add(this.jpanel_home);
+        this.jpanel_tool.add(this.jpanel_Admin);
+        this.jpanel_tool.add(this.jpanel_borrowBooks);
+        this.jpanel_tool.add(this.jpanel_returnBooks);
+        this.jpanel_tool.add(this.jpanel_help);
         this.jpanel_tool.add(this.jmenu_item_exit);
-        this.jpanel_tool.add(this.jmenu_item_help);
 
         this.jtextField_search = new JTextField();
         this.jtextField_search.setFont(new Font("Tahoma", Font.BOLD, 40));
@@ -176,13 +222,13 @@ public class DictionaryView extends JFrame {
         jMenuItem_sound.setIcon(new ImageIcon("src\\view\\image\\volume.png"));
         panel_word.add(jMenuItem_sound);
 
-        JCheckBox chckbxNewCheckBox = new JCheckBox("Remembered");
+        JCheckBox chckbxNewCheckBox = new JCheckBox("Yêu thích");
         chckbxNewCheckBox.setFont(new Font("Tahoma", Font.ITALIC, 20));
         chckbxNewCheckBox.setBackground(new Color(208, 255, 208));
 
         // Thêm icon vào JCheckBox
-        ImageIcon uncheckedIcon = new ImageIcon("src\\view\\image\\bright_2.png");
-        ImageIcon checkedIcon = new ImageIcon("src\\view\\image\\bright.png");
+        ImageIcon uncheckedIcon = new ImageIcon("src\\view\\image\\heart_1.png");
+        ImageIcon checkedIcon = new ImageIcon("src\\view\\image\\heart_2.png");
 
         // Đặt icon khi checkbox chưa được chọn
         chckbxNewCheckBox.setIcon(uncheckedIcon);
@@ -198,11 +244,12 @@ public class DictionaryView extends JFrame {
         return panel_word;
     }
 
-    public void runGame() {
+    public void selectBorrow() {
         clearPanel();
         setColorTool(change);
-        change = "Game";
-        jmenu_item_game.setForeground(new Color(64, 0, 128));
+        change = "Borrow";
+        jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
+        this.jpanel_borrowBooks.setBackground(new Color(154,205,50));
 
         // Tạo một JButton mới
         JButton gameButton = new JButton("Start Game");
@@ -231,6 +278,7 @@ public class DictionaryView extends JFrame {
         // Cập nhật trạng thái là "Home"
         change = "Home";
         jmenu_item_home.setForeground(new Color(64, 0, 128));
+        this.jpanel_home.setBackground(new Color(154,205,50));
 
         // Thêm lại các thành phần ban đầu vào contentPane
         this.contentPane.add(this.jpanel_search_befor, BorderLayout.NORTH);
@@ -243,7 +291,109 @@ public class DictionaryView extends JFrame {
         this.contentPane.repaint();
 
     }
-    
+    public void selectHelp() {
+        clearPanel();
+        setColorTool(change);
+        change = "Help";
+        jmenu_item_help.setForeground(new Color(64, 0, 128));
+        this.jpanel_help.setBackground(new Color(154,205,50));
+
+        // Cập nhật lại giao diện
+        this.contentPane.revalidate();
+        this.contentPane.repaint();
+
+    }
+    // phần đăng nhập cho admin
+    public void dangNhap(){
+
+        jtextField_tenDangNhap = new JTextField();
+        jtextField_tenDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        jtextField_matKhau = new JTextField();
+        jtextField_matKhau.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        jlabel_tenDangNhap = new JLabel("Tên đăng nhập");
+        jlabel_tenDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        jlabel_matKhau = new JLabel("Mật khẩu");
+        jlabel_matKhau.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        jLabel_checkDangNhap = new JLabel("mật khẩu hoặc tên đăng nhập sai");
+        jLabel_checkDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        jLabel_checkDangNhap.setForeground(new Color(255,0,0));
+
+        jmenu_item_DangNhap = new JMenuItem("Đăng nhập");
+        jmenu_item_DangNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jmenu_item_DangNhap.setForeground(new Color(64, 0, 128));
+
+        jpanel_noiDung_DangNhap = new JPanel(new GridLayout(3, 2, 10, 10));
+        jpanel_noiDung_DangNhap.setBackground(new Color(154,205,50));
+        jpanel_noiDung_DangNhap.add(jtextField_tenDangNhap);
+        jpanel_noiDung_DangNhap.add(jlabel_tenDangNhap);
+        jpanel_noiDung_DangNhap.add(jtextField_matKhau);
+        jpanel_noiDung_DangNhap.add(jlabel_matKhau);
+        jpanel_noiDung_DangNhap.add(jlabel_1);
+        jpanel_noiDung_DangNhap.add(jlabel_1);
+
+        jpanel_click_DangNhap = new JPanel(new BorderLayout());
+        jpanel_click_DangNhap.setBackground(new Color(154,205,50));
+        jpanel_click_DangNhap.add(jLabel_checkDangNhap, BorderLayout.NORTH);
+        jpanel_click_DangNhap.add(jmenu_item_DangNhap, BorderLayout.CENTER);
+
+        jpanel_DangNhap = new JPanel(new BorderLayout());
+        jpanel_DangNhap.setBackground(new Color(154,205,50));
+        jpanel_DangNhap.add(jpanel_noiDung_DangNhap, BorderLayout.CENTER);
+        jpanel_DangNhap.add(jpanel_click_DangNhap, BorderLayout.SOUTH);
+
+        this.jlabel_4 = new JLabel("       ");
+        this.jlabel_4.setFont(new Font("Tahoma", Font.BOLD, 80));
+        this.jlabel_4.setBackground(new Color(0, 128, 64));
+
+        this.jlabel_5 = new JLabel("       ");
+        this.jlabel_5.setFont(new Font("Tahoma", Font.BOLD, 80));
+        this.jlabel_5.setBackground(new Color(0, 128, 64));
+
+        this.jlabel_6 = new JLabel("       ");
+        this.jlabel_6.setFont(new Font("Tahoma", Font.BOLD, 80));
+        this.jlabel_6.setBackground(new Color(0, 128, 64));
+
+        this.jlabel_7 = new JLabel("        ");
+        this.jlabel_7.setFont(new Font("Tahoma", Font.BOLD, 80));
+        this.jlabel_7.setBackground(new Color(0, 128, 64));
+
+        this.contentPane.add(jlabel_7, BorderLayout.NORTH);
+        this.contentPane.add(jlabel_6, BorderLayout.EAST);
+        this.contentPane.add(jlabel_5, BorderLayout.WEST);
+        this.contentPane.add(jlabel_4, BorderLayout.SOUTH);
+        this.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
+    }
+    public void selectAdmin() {
+        clearPanel();
+        setColorTool(change);
+        change = "Admin";
+        jmenu_item_Admin.setForeground(new Color(64, 0, 128));
+        this.jpanel_Admin.setBackground(new Color(154,205,50));
+
+        dangNhap();
+
+        // Cập nhật lại giao diện
+        this.contentPane.revalidate();
+        this.contentPane.repaint();
+
+    }
+    public void selectReturn() {
+        clearPanel();
+        setColorTool(change);
+        change = "Return";
+        jmenu_item_returnBooks.setForeground(new Color(64, 0, 128));
+        this.jpanel_returnBooks.setBackground(new Color(154,205,50));
+
+        // Cập nhật lại giao diện
+        this.contentPane.revalidate();
+        this.contentPane.repaint();
+
+    }
+
     public void clearPanel() {
         this.contentPane.removeAll();
         this.contentPane.revalidate();
@@ -253,8 +403,20 @@ public class DictionaryView extends JFrame {
     public void setColorTool(String change) {
         if(this.change.equals("Home")||this.change.equals("")) {
             this.jmenu_item_home.setForeground(new Color(255, 255, 255));
-        }else if(this.change.equals("Game")) {
-            this.jmenu_item_game.setForeground(new Color(255, 255, 255));
+            this.jpanel_home.setBackground(new Color(0, 128, 64));
+        }else if(this.change.equals("Borrow")) {
+            this.jmenu_item_borrowBooks.setForeground(new Color(255, 255, 255));
+            this.jpanel_borrowBooks.setBackground(new Color(0, 128, 64));
+        }else if(this.change.equals("Return")) {
+            this.jmenu_item_returnBooks.setForeground(new Color(255, 255, 255));
+            this.jpanel_returnBooks.setBackground(new Color(0, 128, 64));
+        }else if(this.change.equals("Help")) {
+            this.jmenu_item_help.setForeground(new Color(255, 255, 255));
+            this.jpanel_help.setBackground(new Color(0, 128, 64));
+        }else if(this.change.equals("Admin")) {
+            this.jmenu_item_Admin.setForeground(new Color(255, 255, 255));
+            this.jpanel_Admin.setBackground(new Color(0, 128, 64));
         }
     }
+
 }
