@@ -1,6 +1,7 @@
 package view;
 
 import controller.DictionaryController;
+import model.AdminModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryView extends JFrame {
-    private JPanel contentPane;
+    private AdminModel adminModel;
+    public JPanel contentPane;
     private JPanel jpanel_tool;
     private JPanel jpanel_search;
     private JPanel jpanel_search_tool;
@@ -21,14 +23,14 @@ public class DictionaryView extends JFrame {
 
     private JMenuItem jmenu_item_home;
     private JMenuItem jmenu_item_exit;
-    private JMenuItem jmenu_item_borrowBooks;
+    public JMenuItem jmenu_item_borrowBooks;
     private JMenuItem jmenu_item_returnBooks;
     private JMenuItem jmenu_item_Admin;
     private JMenuItem jmenu_item_help;
 
     private JPanel jpanel_home;
     private JPanel jpanel_exit;
-    private JPanel jpanel_borrowBooks;
+    public JPanel jpanel_borrowBooks;
     private JPanel jpanel_returnBooks;
     private JPanel jpanel_Admin;
     private JPanel jpanel_help;
@@ -38,7 +40,7 @@ public class DictionaryView extends JFrame {
     private JTextField jtextField_matKhau;
     private JLabel jlabel_tenDangNhap;
     private JLabel jlabel_matKhau;
-    private JLabel jLabel_checkDangNhap;
+    public JLabel jLabel_checkDangNhap;
     private JMenuItem jmenu_item_DangNhap;
     private JPanel jpanel_DangNhap;
     private JPanel jpanel_click_DangNhap;
@@ -55,17 +57,24 @@ public class DictionaryView extends JFrame {
     private JLabel jlabel_5;
     private JLabel jlabel_6;
     private JLabel jlabel_7;
+    private JLabel jlabel_8;
+    private JLabel jlabel_9;
+    private JLabel jlabel_10;
+    private JLabel jlabel_11;
 
 
     private List<JPanel> wordPanels = new ArrayList<>();
 
-    private String change;
+    public String change;
 
 //    private JCheckBox jcheckbox_remember;
 //    private JMenuItem jmenu_item_dowload;
 
     DictionaryController dictionaryController = new DictionaryController(this);
+    public DictionaryFuntion dictionaryFuntion = new DictionaryFuntion(this);
+
     public DictionaryView() {
+        this.adminModel = new AdminModel();
         this.init();
         this.setVisible(true);
         this.change = "";
@@ -162,6 +171,26 @@ public class DictionaryView extends JFrame {
         this.jlabel_3.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_3.setBackground(new Color(0, 128, 64));
 
+        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        this.jlabel_8 = new JLabel("");
+        this.jlabel_8.setFont(new Font("Tahoma", Font.BOLD, 10));
+        this.jlabel_8.setBackground(new Color(0, 128, 64));
+
+        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        this.jlabel_9 = new JLabel("");
+        this.jlabel_9.setFont(new Font("Tahoma", Font.BOLD, 10));
+        this.jlabel_9.setBackground(new Color(0, 128, 64));
+
+        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        this.jlabel_10 = new JLabel("");
+        this.jlabel_10.setFont(new Font("Tahoma", Font.BOLD, 10));
+        this.jlabel_10.setBackground(new Color(0, 128, 64));
+
+        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        this.jlabel_11 = new JLabel("");
+        this.jlabel_11.setFont(new Font("Tahoma", Font.BOLD, 10));
+        this.jlabel_11.setBackground(new Color(0, 128, 64));
+
         // phaanf tìm kiếm chính
         this.jpanel_search = new JPanel(new BorderLayout());
         this.jpanel_search.setBackground(new Color(208, 255, 208));
@@ -244,30 +273,28 @@ public class DictionaryView extends JFrame {
         return panel_word;
     }
 
-    public void selectBorrow() {
-        clearPanel();
-        setColorTool(change);
-        change = "Borrow";
-        jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
-        this.jpanel_borrowBooks.setBackground(new Color(154,205,50));
+//    public void selectBorrow() {
+//        clearPanel();
+//        setColorTool(change);
+//        change = "Borrow";
+//        jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
+//        this.jpanel_borrowBooks.setBackground(new Color(154,205,50));
+//
+//        // Tạo một JButton mới
+//        JButton gameButton = new JButton("Start Game");
+//        gameButton.setFont(new Font("Segoe UI", Font.BOLD, 30));
+//        gameButton.setBackground(new Color(0, 128, 64));
+//        gameButton.setForeground(Color.GREEN);
+//
+//        // Thêm JButton vào giữa panel
+//        this.contentPane.add(gameButton, BorderLayout.CENTER);
+//
+//        // Cập nhật lại giao diện
+//        this.contentPane.revalidate();
+//        this.contentPane.repaint();
+//
+//    }
 
-        // Tạo một JButton mới
-        JButton gameButton = new JButton("Start Game");
-        gameButton.setFont(new Font("Segoe UI", Font.BOLD, 30));
-        gameButton.setBackground(new Color(0, 128, 64));
-        gameButton.setForeground(Color.GREEN);
-
-        // Thêm JButton vào giữa panel
-        this.contentPane.add(gameButton, BorderLayout.CENTER);
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
-    }
-    public void startGame() {
-
-    }
     public void selectHome() {
         // Xóa hết các phần tử trên contentPane
         clearPanel();
@@ -318,27 +345,68 @@ public class DictionaryView extends JFrame {
         jlabel_matKhau = new JLabel("Mật khẩu");
         jlabel_matKhau.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-        jLabel_checkDangNhap = new JLabel("mật khẩu hoặc tên đăng nhập sai");
+        jLabel_checkDangNhap = new JLabel("");
         jLabel_checkDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
         jLabel_checkDangNhap.setForeground(new Color(255,0,0));
 
         jmenu_item_DangNhap = new JMenuItem("Đăng nhập");
-        jmenu_item_DangNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        jmenu_item_DangNhap.setForeground(new Color(64, 0, 128));
+        jmenu_item_DangNhap.setFont(new Font("Tahoma", Font.BOLD, 40));
+        jmenu_item_DangNhap.setForeground(new Color(255, 255, 255));
+        jmenu_item_DangNhap.addActionListener(dictionaryController);
 
-        jpanel_noiDung_DangNhap = new JPanel(new GridLayout(3, 2, 10, 10));
+        JPanel jpanel_khoangTrong_1 = new JPanel(new BorderLayout());
+        jpanel_khoangTrong_1.setBackground(new Color(154,205,50));
+        JLabel jlabel_14 = new JLabel("        ");
+        jlabel_14.setFont(new Font("Tahoma", Font.BOLD, 80));
+        //jlabel_14.setBackground(new Color(154,205,50));
+        jpanel_khoangTrong_1.add(jlabel_14, BorderLayout.CENTER);
+
+        JPanel jpanel_khoangTrong_2 = new JPanel(new BorderLayout());
+        jpanel_khoangTrong_2.setBackground(new Color(154,205,50));
+        JLabel jlabel_15 = new JLabel("        ");
+        jlabel_15.setFont(new Font("Tahoma", Font.BOLD, 80));
+        //jlabel_14.setBackground(new Color(0,205,50));
+        jpanel_khoangTrong_2.add(jlabel_15, BorderLayout.CENTER);
+
+        JPanel jpanel_khoangTrong_3 = new JPanel(new BorderLayout());
+        jpanel_khoangTrong_3.setBackground(new Color(154,205,50));
+        JLabel jlabel_16 = new JLabel("        ");
+        jlabel_16.setFont(new Font("Tahoma", Font.BOLD, 80));
+        //jlabel_14.setBackground(new Color(154,205,50));
+        jpanel_khoangTrong_3.add(jlabel_16, BorderLayout.CENTER);
+
+        JPanel jpanel_khoangTrong_4 = new JPanel(new BorderLayout());
+        jpanel_khoangTrong_4.setBackground(new Color(154,205,50));
+        JLabel jlabel_17 = new JLabel("        ");
+        jlabel_17.setFont(new Font("Tahoma", Font.BOLD, 80));
+        //jlabel_14.setBackground(new Color(154,205,50));
+        jpanel_khoangTrong_4.add(jlabel_17, BorderLayout.CENTER);
+
+
+        jpanel_noiDung_DangNhap = new JPanel(new GridLayout(5, 2, 10, 10));
         jpanel_noiDung_DangNhap.setBackground(new Color(154,205,50));
+        jpanel_noiDung_DangNhap.add(jlabel_1);
+        jpanel_noiDung_DangNhap.add(jlabel_2);
+
         jpanel_noiDung_DangNhap.add(jtextField_tenDangNhap);
         jpanel_noiDung_DangNhap.add(jlabel_tenDangNhap);
         jpanel_noiDung_DangNhap.add(jtextField_matKhau);
         jpanel_noiDung_DangNhap.add(jlabel_matKhau);
-        jpanel_noiDung_DangNhap.add(jlabel_1);
-        jpanel_noiDung_DangNhap.add(jlabel_1);
+        jpanel_noiDung_DangNhap.add(jLabel_checkDangNhap);
+        jpanel_noiDung_DangNhap.add(jlabel_9);
+
+//        jpanel_noiDung_DangNhap.add(jlabel_11);
+//        jpanel_noiDung_DangNhap.add(jlabel_10);
+
 
         jpanel_click_DangNhap = new JPanel(new BorderLayout());
-        jpanel_click_DangNhap.setBackground(new Color(154,205,50));
-        jpanel_click_DangNhap.add(jLabel_checkDangNhap, BorderLayout.NORTH);
+        jpanel_click_DangNhap.setBackground(new Color(75,0,130));
+        //jpanel_click_DangNhap.add(jLabel_checkDangNhap, BorderLayout.NORTH);
         jpanel_click_DangNhap.add(jmenu_item_DangNhap, BorderLayout.CENTER);
+        jpanel_click_DangNhap.add(jpanel_khoangTrong_1, BorderLayout.NORTH);
+        jpanel_click_DangNhap.add(jpanel_khoangTrong_3, BorderLayout.EAST);
+        jpanel_click_DangNhap.add(jpanel_khoangTrong_2, BorderLayout.WEST);
+        jpanel_click_DangNhap.add(jpanel_khoangTrong_4, BorderLayout.SOUTH);
 
         jpanel_DangNhap = new JPanel(new BorderLayout());
         jpanel_DangNhap.setBackground(new Color(154,205,50));
@@ -361,11 +429,30 @@ public class DictionaryView extends JFrame {
         this.jlabel_7.setFont(new Font("Tahoma", Font.BOLD, 80));
         this.jlabel_7.setBackground(new Color(0, 128, 64));
 
+//        this.jlabel_13 = new JLabel("        ");
+//        this.jlabel_13.setFont(new Font("Tahoma", Font.BOLD, 80));
+//        this.jlabel_13.setBackground(new Color(0, 128, 64));
+//
         this.contentPane.add(jlabel_7, BorderLayout.NORTH);
         this.contentPane.add(jlabel_6, BorderLayout.EAST);
         this.contentPane.add(jlabel_5, BorderLayout.WEST);
         this.contentPane.add(jlabel_4, BorderLayout.SOUTH);
         this.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
+    }
+
+    public boolean checkDangNhap(){
+        String tenAdmin = this.jtextField_tenDangNhap.getText();
+        String matKhau = this.jtextField_matKhau.getText();
+        this.adminModel.adminModelList = this.adminModel.setAdminModelList();
+        for(int i = 0; i<adminModel.adminModelList.size(); i++){
+            AdminModel admin = adminModel.adminModelList.get(i);
+
+            // Kiểm tra xem tenAdmin và matKhau có khớp không
+            if (tenAdmin.equals(admin.getTenDangNhap()) && matKhau.equals(admin.getMatKhau())) {
+                return true; // Đăng nhập thành công
+            }
+        }
+        return false;
     }
     public void selectAdmin() {
         clearPanel();
