@@ -3,12 +3,11 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.DictionaryFuntion;
 import view.DictionaryView;
 
 public class DictionaryController implements ActionListener{
     private DictionaryView dictionaryView;
-    private DictionaryFuntion dictionaryFuntion;
+    //private DictionaryFuntion dictionaryFuntion;
 
     public DictionaryController(DictionaryView dictionaryView) {
         this.dictionaryView = dictionaryView;
@@ -21,16 +20,16 @@ public class DictionaryController implements ActionListener{
         if(src.equals("Exit")) {
             System.exit(0);
         }else if(src.equals("Borrow")) {
-            this.dictionaryView.dictionaryFuntion.selectBorrow();
+            this.dictionaryView.borrowedFunction.selectBorrow();
             System.out.println("đã ấn borrow");
         }else if(src.equals("Return")) {
-            this.dictionaryView.selectReturn();
+            this.dictionaryView.bookReturnFunction.selectReturn();
             System.out.println("đã ấn return");
         }else if(src.equals("Home")) {
-            this.dictionaryView.selectHome();
+            this.dictionaryView.homeFunction.selectHome();
             System.out.println("đã ấn home");
         }else if(src.equals("Help")) {
-            this.dictionaryView.selectHelp();
+            this.dictionaryView.helpFunction.selectHelp();
             System.out.println("đã ấn help");
         }else if(src.equals("Admin")) {
             this.dictionaryView.selectAdmin();

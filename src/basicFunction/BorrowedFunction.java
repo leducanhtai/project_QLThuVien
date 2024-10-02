@@ -1,12 +1,13 @@
-package view;
+package basicFunction;
+
+import view.DictionaryView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Dictionary;
 
-public class DictionaryFuntion {
+public class BorrowedFunction {
     private DictionaryView dictionaryView;
-    public DictionaryFuntion(DictionaryView dictionaryView) {
+    public BorrowedFunction(DictionaryView dictionaryView) {
         this.dictionaryView = dictionaryView;
     }
 
@@ -31,5 +32,4 @@ public class DictionaryFuntion {
         this.dictionaryView.contentPane.repaint();
 
     }
-
 }

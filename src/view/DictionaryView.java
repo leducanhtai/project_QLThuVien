@@ -1,5 +1,9 @@
 package view;
 
+import basicFunction.BookReturnFunction;
+import basicFunction.BorrowedFunction;
+import basicFunction.HelpFunction;
+import basicFunction.HomeFunction;
 import controller.DictionaryController;
 import model.AdminModel;
 
@@ -14,26 +18,26 @@ public class DictionaryView extends JFrame {
     public JPanel contentPane;
     private JPanel jpanel_tool;
     private JPanel jpanel_search;
-    private JPanel jpanel_search_tool;
-    private JPanel jpanel_search_befor;
-    private JPanel jpanel_center;
+    public JPanel jpanel_search_tool;
+    public JPanel jpanel_search_befor;
+    public JPanel jpanel_center;
 
     private JTextField jtextField_search;
     private JMenuItem jmenu_item_search;
 
-    private JMenuItem jmenu_item_home;
+    public JMenuItem jmenu_item_home;
     private JMenuItem jmenu_item_exit;
     public JMenuItem jmenu_item_borrowBooks;
-    private JMenuItem jmenu_item_returnBooks;
+    public JMenuItem jmenu_item_returnBooks;
     private JMenuItem jmenu_item_Admin;
-    private JMenuItem jmenu_item_help;
+    public JMenuItem jmenu_item_help;
 
-    private JPanel jpanel_home;
+    public JPanel jpanel_home;
     private JPanel jpanel_exit;
     public JPanel jpanel_borrowBooks;
-    private JPanel jpanel_returnBooks;
+    public JPanel jpanel_returnBooks;
     private JPanel jpanel_Admin;
-    private JPanel jpanel_help;
+    public JPanel jpanel_help;
 
     // phần đăng nhập của admin
     private JTextField jtextField_tenDangNhap;
@@ -51,7 +55,7 @@ public class DictionaryView extends JFrame {
     private JButton jbutton_home;
 
     private JLabel jlabel_1;
-    private JLabel jlabel_2;
+    public JLabel jlabel_2;
     private JLabel jlabel_3;
     private JLabel jlabel_4;
     private JLabel jlabel_5;
@@ -71,7 +75,10 @@ public class DictionaryView extends JFrame {
 //    private JMenuItem jmenu_item_dowload;
 
     DictionaryController dictionaryController = new DictionaryController(this);
-    public DictionaryFuntion dictionaryFuntion = new DictionaryFuntion(this);
+    public BorrowedFunction borrowedFunction = new BorrowedFunction(this);
+    public BookReturnFunction bookReturnFunction = new BookReturnFunction(this);
+    public HomeFunction homeFunction = new HomeFunction(this);
+    public HelpFunction helpFunction = new HelpFunction(this);
 
     public DictionaryView() {
         this.adminModel = new AdminModel();
@@ -156,37 +163,37 @@ public class DictionaryView extends JFrame {
         this.jtextField_search = new JTextField();
         this.jtextField_search.setFont(new Font("Tahoma", Font.BOLD, 40));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_1 = new JLabel(" ");
         this.jlabel_1.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_1.setBackground(new Color(0, 128, 64));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_2 = new JLabel(" ");
         this.jlabel_2.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_2.setBackground(new Color(0, 128, 64));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_3 = new JLabel(" kkkkk");
         this.jlabel_3.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_3.setBackground(new Color(0, 128, 64));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_8 = new JLabel("");
         this.jlabel_8.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_8.setBackground(new Color(0, 128, 64));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_9 = new JLabel("");
         this.jlabel_9.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_9.setBackground(new Color(0, 128, 64));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_10 = new JLabel("");
         this.jlabel_10.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_10.setBackground(new Color(0, 128, 64));
 
-        // chỉ là phần tạo khoang trắng cho thẩm mĩ
+        // chỉ là phần tạo khoang trắng
         this.jlabel_11 = new JLabel("");
         this.jlabel_11.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_11.setBackground(new Color(0, 128, 64));
@@ -295,58 +302,24 @@ public class DictionaryView extends JFrame {
 //
 //    }
 
-    public void selectHome() {
-        // Xóa hết các phần tử trên contentPane
-        clearPanel();
 
-        // Đặt lại màu cho các mục trong jpanel_tool
-        setColorTool(change);
-
-        // Cập nhật trạng thái là "Home"
-        change = "Home";
-        jmenu_item_home.setForeground(new Color(64, 0, 128));
-        this.jpanel_home.setBackground(new Color(154,205,50));
-
-        // Thêm lại các thành phần ban đầu vào contentPane
-        this.contentPane.add(this.jpanel_search_befor, BorderLayout.NORTH);
-
-        JScrollPane scrollPane = new JScrollPane(this.jpanel_center);  // Tạo lại JScrollPane
-        this.contentPane.add(scrollPane, BorderLayout.CENTER);
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
-    }
-    public void selectHelp() {
-        clearPanel();
-        setColorTool(change);
-        change = "Help";
-        jmenu_item_help.setForeground(new Color(64, 0, 128));
-        this.jpanel_help.setBackground(new Color(154,205,50));
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
-    }
     // phần đăng nhập cho admin
     public void dangNhap(){
 
         jtextField_tenDangNhap = new JTextField();
-        jtextField_tenDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jtextField_tenDangNhap.setFont(new Font("Tahoma", Font.BOLD, 30));
 
         jtextField_matKhau = new JTextField();
-        jtextField_matKhau.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jtextField_matKhau.setFont(new Font("Tahoma", Font.BOLD, 30));
 
         jlabel_tenDangNhap = new JLabel("Tên đăng nhập");
-        jlabel_tenDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jlabel_tenDangNhap.setFont(new Font("Tahoma", Font.BOLD, 30));
 
         jlabel_matKhau = new JLabel("Mật khẩu");
-        jlabel_matKhau.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jlabel_matKhau.setFont(new Font("Tahoma", Font.BOLD, 30));
 
         jLabel_checkDangNhap = new JLabel("");
-        jLabel_checkDangNhap.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        jLabel_checkDangNhap.setFont(new Font("Tahoma", Font.BOLD, 14));
         jLabel_checkDangNhap.setForeground(new Color(255,0,0));
 
         jmenu_item_DangNhap = new JMenuItem("Đăng nhập");
@@ -462,18 +435,6 @@ public class DictionaryView extends JFrame {
         this.jpanel_Admin.setBackground(new Color(154,205,50));
 
         dangNhap();
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
-    }
-    public void selectReturn() {
-        clearPanel();
-        setColorTool(change);
-        change = "Return";
-        jmenu_item_returnBooks.setForeground(new Color(64, 0, 128));
-        this.jpanel_returnBooks.setBackground(new Color(154,205,50));
 
         // Cập nhật lại giao diện
         this.contentPane.revalidate();
