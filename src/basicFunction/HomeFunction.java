@@ -5,10 +5,10 @@ import view.DictionaryView;
 import javax.swing.*;
 import java.awt.*;
 
-public class HomeFunction {
-    private DictionaryView dictionaryView;
+public class HomeFunction extends BasicFunction {
+    //private DictionaryView dictionaryView;
     public HomeFunction(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+        super(dictionaryView);
     }
     public void selectHome() {
         // Xóa hết các phần tử trên contentPane

@@ -2,12 +2,13 @@ package basicFunction;
 
 import view.DictionaryView;
 
+import javax.swing.*;
 import java.awt.*;
 
-public class BookReturnFunction {
-    private DictionaryView dictionaryView;
+public class BookReturnFunction extends BasicFunction {
+   // private DictionaryView dictionaryView;
     public BookReturnFunction(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+        super(dictionaryView);
     }
     public void selectReturn() {
         this.dictionaryView.clearPanel();

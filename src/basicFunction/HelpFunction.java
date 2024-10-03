@@ -2,12 +2,13 @@ package basicFunction;
 
 import view.DictionaryView;
 
+import javax.swing.*;
 import java.awt.*;
 
-public class HelpFunction {
-    private DictionaryView dictionaryView;
+public class HelpFunction extends BasicFunction {
+    //private DictionaryView dictionaryView;
     public HelpFunction(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+        super(dictionaryView);
     }
     public void selectHelp() {
         this.dictionaryView.clearPanel();

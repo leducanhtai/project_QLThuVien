@@ -32,10 +32,10 @@ public class DictionaryController implements ActionListener{
             this.dictionaryView.helpFunction.selectHelp();
             System.out.println("đã ấn help");
         }else if(src.equals("Admin")) {
-            this.dictionaryView.selectAdmin();
+            this.dictionaryView.login.selectAdmin();
             System.out.println("đã ấn admin");
         }else if(src.equals("Đăng nhập")) {
-            boolean kt = this.dictionaryView.checkDangNhap();
+            boolean kt = this.dictionaryView.login.checkDangNhap();
             if(kt){
                 this.dictionaryView.jLabel_checkDangNhap.setText(" ");
                 System.out.println(kt);

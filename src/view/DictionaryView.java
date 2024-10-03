@@ -1,9 +1,7 @@
 package view;
 
-import basicFunction.BookReturnFunction;
-import basicFunction.BorrowedFunction;
-import basicFunction.HelpFunction;
-import basicFunction.HomeFunction;
+import adminFunction.Login;
+import basicFunction.*;
 import controller.DictionaryController;
 import model.AdminModel;
 
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryView extends JFrame {
-    private AdminModel adminModel;
+    public AdminModel adminModel;
     public JPanel contentPane;
     private JPanel jpanel_tool;
     private JPanel jpanel_search;
@@ -29,42 +27,42 @@ public class DictionaryView extends JFrame {
     private JMenuItem jmenu_item_exit;
     public JMenuItem jmenu_item_borrowBooks;
     public JMenuItem jmenu_item_returnBooks;
-    private JMenuItem jmenu_item_Admin;
+    public JMenuItem jmenu_item_Admin;
     public JMenuItem jmenu_item_help;
 
     public JPanel jpanel_home;
     private JPanel jpanel_exit;
     public JPanel jpanel_borrowBooks;
     public JPanel jpanel_returnBooks;
-    private JPanel jpanel_Admin;
+    public JPanel jpanel_Admin;
     public JPanel jpanel_help;
 
     // phần đăng nhập của admin
-    private JTextField jtextField_tenDangNhap;
-    private JTextField jtextField_matKhau;
-    private JLabel jlabel_tenDangNhap;
-    private JLabel jlabel_matKhau;
+    public JTextField jtextField_tenDangNhap;
+    public JTextField jtextField_matKhau;
+    public JLabel jlabel_tenDangNhap;
+    public JLabel jlabel_matKhau;
     public JLabel jLabel_checkDangNhap;
-    private JMenuItem jmenu_item_DangNhap;
-    private JPanel jpanel_DangNhap;
-    private JPanel jpanel_click_DangNhap;
-    private JPanel jpanel_noiDung_DangNhap;
+    public JMenuItem jmenu_item_DangNhap;
+    public JPanel jpanel_DangNhap;
+    public JPanel jpanel_click_DangNhap;
+    public JPanel jpanel_noiDung_DangNhap;
 
 
     private JButton jbutton_start_game;
     private JButton jbutton_home;
 
-    private JLabel jlabel_1;
+    public JLabel jlabel_1;
     public JLabel jlabel_2;
     private JLabel jlabel_3;
-    private JLabel jlabel_4;
-    private JLabel jlabel_5;
-    private JLabel jlabel_6;
-    private JLabel jlabel_7;
-    private JLabel jlabel_8;
-    private JLabel jlabel_9;
-    private JLabel jlabel_10;
-    private JLabel jlabel_11;
+    public JLabel jlabel_4;
+    public JLabel jlabel_5;
+    public JLabel jlabel_6;
+    public JLabel jlabel_7;
+    public JLabel jlabel_8;
+    public JLabel jlabel_9;
+    public JLabel jlabel_10;
+    public JLabel jlabel_11;
 
 
     private List<JPanel> wordPanels = new ArrayList<>();
@@ -74,11 +72,12 @@ public class DictionaryView extends JFrame {
 //    private JCheckBox jcheckbox_remember;
 //    private JMenuItem jmenu_item_dowload;
 
-    DictionaryController dictionaryController = new DictionaryController(this);
+    public DictionaryController dictionaryController = new DictionaryController(this);
     public BorrowedFunction borrowedFunction = new BorrowedFunction(this);
     public BookReturnFunction bookReturnFunction = new BookReturnFunction(this);
     public HomeFunction homeFunction = new HomeFunction(this);
     public HelpFunction helpFunction = new HelpFunction(this);
+    public Login login = new Login(this);
 
     public DictionaryView() {
         this.adminModel = new AdminModel();
@@ -303,144 +302,7 @@ public class DictionaryView extends JFrame {
 //    }
 
 
-    // phần đăng nhập cho admin
-    public void dangNhap(){
 
-        jtextField_tenDangNhap = new JTextField();
-        jtextField_tenDangNhap.setFont(new Font("Tahoma", Font.BOLD, 30));
-
-        jtextField_matKhau = new JTextField();
-        jtextField_matKhau.setFont(new Font("Tahoma", Font.BOLD, 30));
-
-        jlabel_tenDangNhap = new JLabel("Tên đăng nhập");
-        jlabel_tenDangNhap.setFont(new Font("Tahoma", Font.BOLD, 30));
-
-        jlabel_matKhau = new JLabel("Mật khẩu");
-        jlabel_matKhau.setFont(new Font("Tahoma", Font.BOLD, 30));
-
-        jLabel_checkDangNhap = new JLabel("");
-        jLabel_checkDangNhap.setFont(new Font("Tahoma", Font.BOLD, 14));
-        jLabel_checkDangNhap.setForeground(new Color(255,0,0));
-
-        jmenu_item_DangNhap = new JMenuItem("Đăng nhập");
-        jmenu_item_DangNhap.setFont(new Font("Tahoma", Font.BOLD, 40));
-        jmenu_item_DangNhap.setForeground(new Color(255, 255, 255));
-        jmenu_item_DangNhap.addActionListener(dictionaryController);
-
-        JPanel jpanel_khoangTrong_1 = new JPanel(new BorderLayout());
-        jpanel_khoangTrong_1.setBackground(new Color(154,205,50));
-        JLabel jlabel_14 = new JLabel("        ");
-        jlabel_14.setFont(new Font("Tahoma", Font.BOLD, 80));
-        //jlabel_14.setBackground(new Color(154,205,50));
-        jpanel_khoangTrong_1.add(jlabel_14, BorderLayout.CENTER);
-
-        JPanel jpanel_khoangTrong_2 = new JPanel(new BorderLayout());
-        jpanel_khoangTrong_2.setBackground(new Color(154,205,50));
-        JLabel jlabel_15 = new JLabel("        ");
-        jlabel_15.setFont(new Font("Tahoma", Font.BOLD, 80));
-        //jlabel_14.setBackground(new Color(0,205,50));
-        jpanel_khoangTrong_2.add(jlabel_15, BorderLayout.CENTER);
-
-        JPanel jpanel_khoangTrong_3 = new JPanel(new BorderLayout());
-        jpanel_khoangTrong_3.setBackground(new Color(154,205,50));
-        JLabel jlabel_16 = new JLabel("        ");
-        jlabel_16.setFont(new Font("Tahoma", Font.BOLD, 80));
-        //jlabel_14.setBackground(new Color(154,205,50));
-        jpanel_khoangTrong_3.add(jlabel_16, BorderLayout.CENTER);
-
-        JPanel jpanel_khoangTrong_4 = new JPanel(new BorderLayout());
-        jpanel_khoangTrong_4.setBackground(new Color(154,205,50));
-        JLabel jlabel_17 = new JLabel("        ");
-        jlabel_17.setFont(new Font("Tahoma", Font.BOLD, 80));
-        //jlabel_14.setBackground(new Color(154,205,50));
-        jpanel_khoangTrong_4.add(jlabel_17, BorderLayout.CENTER);
-
-
-        jpanel_noiDung_DangNhap = new JPanel(new GridLayout(5, 2, 10, 10));
-        jpanel_noiDung_DangNhap.setBackground(new Color(154,205,50));
-        jpanel_noiDung_DangNhap.add(jlabel_1);
-        jpanel_noiDung_DangNhap.add(jlabel_2);
-
-        jpanel_noiDung_DangNhap.add(jtextField_tenDangNhap);
-        jpanel_noiDung_DangNhap.add(jlabel_tenDangNhap);
-        jpanel_noiDung_DangNhap.add(jtextField_matKhau);
-        jpanel_noiDung_DangNhap.add(jlabel_matKhau);
-        jpanel_noiDung_DangNhap.add(jLabel_checkDangNhap);
-        jpanel_noiDung_DangNhap.add(jlabel_9);
-
-//        jpanel_noiDung_DangNhap.add(jlabel_11);
-//        jpanel_noiDung_DangNhap.add(jlabel_10);
-
-
-        jpanel_click_DangNhap = new JPanel(new BorderLayout());
-        jpanel_click_DangNhap.setBackground(new Color(75,0,130));
-        //jpanel_click_DangNhap.add(jLabel_checkDangNhap, BorderLayout.NORTH);
-        jpanel_click_DangNhap.add(jmenu_item_DangNhap, BorderLayout.CENTER);
-        jpanel_click_DangNhap.add(jpanel_khoangTrong_1, BorderLayout.NORTH);
-        jpanel_click_DangNhap.add(jpanel_khoangTrong_3, BorderLayout.EAST);
-        jpanel_click_DangNhap.add(jpanel_khoangTrong_2, BorderLayout.WEST);
-        jpanel_click_DangNhap.add(jpanel_khoangTrong_4, BorderLayout.SOUTH);
-
-        jpanel_DangNhap = new JPanel(new BorderLayout());
-        jpanel_DangNhap.setBackground(new Color(154,205,50));
-        jpanel_DangNhap.add(jpanel_noiDung_DangNhap, BorderLayout.CENTER);
-        jpanel_DangNhap.add(jpanel_click_DangNhap, BorderLayout.SOUTH);
-
-        this.jlabel_4 = new JLabel("       ");
-        this.jlabel_4.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_4.setBackground(new Color(0, 128, 64));
-
-        this.jlabel_5 = new JLabel("       ");
-        this.jlabel_5.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_5.setBackground(new Color(0, 128, 64));
-
-        this.jlabel_6 = new JLabel("       ");
-        this.jlabel_6.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_6.setBackground(new Color(0, 128, 64));
-
-        this.jlabel_7 = new JLabel("        ");
-        this.jlabel_7.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_7.setBackground(new Color(0, 128, 64));
-
-//        this.jlabel_13 = new JLabel("        ");
-//        this.jlabel_13.setFont(new Font("Tahoma", Font.BOLD, 80));
-//        this.jlabel_13.setBackground(new Color(0, 128, 64));
-//
-        this.contentPane.add(jlabel_7, BorderLayout.NORTH);
-        this.contentPane.add(jlabel_6, BorderLayout.EAST);
-        this.contentPane.add(jlabel_5, BorderLayout.WEST);
-        this.contentPane.add(jlabel_4, BorderLayout.SOUTH);
-        this.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
-    }
-
-    public boolean checkDangNhap(){
-        String tenAdmin = this.jtextField_tenDangNhap.getText();
-        String matKhau = this.jtextField_matKhau.getText();
-        this.adminModel.adminModelList = this.adminModel.setAdminModelList();
-        for(int i = 0; i<adminModel.adminModelList.size(); i++){
-            AdminModel admin = adminModel.adminModelList.get(i);
-
-            // Kiểm tra xem tenAdmin và matKhau có khớp không
-            if (tenAdmin.equals(admin.getTenDangNhap()) && matKhau.equals(admin.getMatKhau())) {
-                return true; // Đăng nhập thành công
-            }
-        }
-        return false;
-    }
-    public void selectAdmin() {
-        clearPanel();
-        setColorTool(change);
-        change = "Admin";
-        jmenu_item_Admin.setForeground(new Color(64, 0, 128));
-        this.jpanel_Admin.setBackground(new Color(154,205,50));
-
-        dangNhap();
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
-    }
 
     public void clearPanel() {
         this.contentPane.removeAll();

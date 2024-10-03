@@ -5,10 +5,10 @@ import view.DictionaryView;
 import javax.swing.*;
 import java.awt.*;
 
-public class BorrowedFunction {
-    private DictionaryView dictionaryView;
+public class BorrowedFunction extends BasicFunction {
+    //private DictionaryView dictionaryView;
     public BorrowedFunction(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+        super(dictionaryView);
     }
 
     public void selectBorrow() {
