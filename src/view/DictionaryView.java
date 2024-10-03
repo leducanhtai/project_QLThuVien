@@ -1,5 +1,5 @@
 package view;
-
+// check git.
 import adminFunction.Login;
 import basicFunction.*;
 import controller.DictionaryController;
