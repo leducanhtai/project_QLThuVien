@@ -1,5 +1,5 @@
 package view;
-// check git.
+// check git.llll
 import adminFunction.Login;
 import basicFunction.*;
 import controller.DictionaryController;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryView extends JFrame {
-    public AdminModel adminModel;
+
     public JPanel contentPane;
     private JPanel jpanel_tool;
     private JPanel jpanel_search;
@@ -37,16 +37,8 @@ public class DictionaryView extends JFrame {
     public JPanel jpanel_Admin;
     public JPanel jpanel_help;
 
-    // phần đăng nhập của admin
-    public JTextField jtextField_tenDangNhap;
-    public JTextField jtextField_matKhau;
-    public JLabel jlabel_tenDangNhap;
-    public JLabel jlabel_matKhau;
-    public JLabel jLabel_checkDangNhap;
-    public JMenuItem jmenu_item_DangNhap;
-    public JPanel jpanel_DangNhap;
-    public JPanel jpanel_click_DangNhap;
-    public JPanel jpanel_noiDung_DangNhap;
+
+
 
 
     private JButton jbutton_start_game;
@@ -55,10 +47,7 @@ public class DictionaryView extends JFrame {
     public JLabel jlabel_1;
     public JLabel jlabel_2;
     private JLabel jlabel_3;
-    public JLabel jlabel_4;
-    public JLabel jlabel_5;
-    public JLabel jlabel_6;
-    public JLabel jlabel_7;
+
     public JLabel jlabel_8;
     public JLabel jlabel_9;
     public JLabel jlabel_10;
@@ -80,7 +69,7 @@ public class DictionaryView extends JFrame {
     public Login login = new Login(this);
 
     public DictionaryView() {
-        this.adminModel = new AdminModel();
+
         this.init();
         this.setVisible(true);
         this.change = "";
@@ -278,30 +267,6 @@ public class DictionaryView extends JFrame {
 
         return panel_word;
     }
-
-//    public void selectBorrow() {
-//        clearPanel();
-//        setColorTool(change);
-//        change = "Borrow";
-//        jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
-//        this.jpanel_borrowBooks.setBackground(new Color(154,205,50));
-//
-//        // Tạo một JButton mới
-//        JButton gameButton = new JButton("Start Game");
-//        gameButton.setFont(new Font("Segoe UI", Font.BOLD, 30));
-//        gameButton.setBackground(new Color(0, 128, 64));
-//        gameButton.setForeground(Color.GREEN);
-//
-//        // Thêm JButton vào giữa panel
-//        this.contentPane.add(gameButton, BorderLayout.CENTER);
-//
-//        // Cập nhật lại giao diện
-//        this.contentPane.revalidate();
-//        this.contentPane.repaint();
-//
-//    }
-
-
 
 
     public void clearPanel() {

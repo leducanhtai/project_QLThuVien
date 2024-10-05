@@ -2,15 +2,29 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Dictionary;
 
+import adminFunction.AdminFunction;
+import adminFunction.DisplayUserInfo;
+import adminFunction.Login;
 import view.DictionaryView;
 
 public class DictionaryController implements ActionListener{
     private DictionaryView dictionaryView;
+    private AdminFunction adminFunction;
+    private Login login;
+    private DisplayUserInfo displayUserInfo;
+    private boolean check = false;
     //private DictionaryFuntion dictionaryFuntion;
 
     public DictionaryController(DictionaryView dictionaryView) {
         this.dictionaryView = dictionaryView;
+    }
+    public DictionaryController(Login login) {
+        this.login = login;
+    }
+    public DictionaryController(DisplayUserInfo displayUserInfo) {
+        this.displayUserInfo = displayUserInfo;
     }
 
     @Override
@@ -32,16 +46,21 @@ public class DictionaryController implements ActionListener{
             this.dictionaryView.helpFunction.selectHelp();
             System.out.println("đã ấn help");
         }else if(src.equals("Admin")) {
-            this.dictionaryView.login.selectAdmin();
+            if(this.check == false){
+                this.dictionaryView.login.selectAdmin();
+            }else if(this.check == true) this.login.adminTool();
             System.out.println("đã ấn admin");
         }else if(src.equals("Đăng nhập")) {
-            boolean kt = this.dictionaryView.login.checkDangNhap();
+            boolean kt = this.login.checkDangNhap();
             if(kt){
-                this.dictionaryView.jLabel_checkDangNhap.setText(" ");
+                this.check = true;
+                System.out.println(check);
+                this.login.jLabel_checkDangNhap.setText(" ");
+                this.login.adminTool();
                 System.out.println(kt);
             }else if(!kt){
                 System.out.println(kt);
-                this.dictionaryView.jLabel_checkDangNhap.setText("tên đăng nhâp hoặc mật khẩu sai");
+                this.login.jLabel_checkDangNhap.setText("tên đăng nhâp hoặc mật khẩu sai");
             }
         }
 

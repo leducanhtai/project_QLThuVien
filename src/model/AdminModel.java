@@ -9,6 +9,7 @@ public class AdminModel {
     private String tenDangNhap;
     private String matKhau;
     public ArrayList<AdminModel> adminModelList;
+
     public AdminModel() {
         this.adminModelList = new ArrayList<AdminModel>();
     }
@@ -24,6 +25,7 @@ public class AdminModel {
     public String getMatKhau() {
         return matKhau;
     }
+
     public ArrayList<AdminModel> setAdminModelList() {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\model\\data\\admin.txt"))) {
             String line;

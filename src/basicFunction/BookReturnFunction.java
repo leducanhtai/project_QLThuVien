@@ -22,4 +22,5 @@ public class BookReturnFunction extends BasicFunction {
         this.dictionaryView.contentPane.repaint();
 
     }
+
 }
