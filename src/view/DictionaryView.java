@@ -186,13 +186,13 @@ public class DictionaryView extends JFrame {
         this.jlabel_11.setFont(new Font("Tahoma", Font.BOLD, 10));
         this.jlabel_11.setBackground(new Color(0, 128, 64));
 
-        // phaanf tìm kiếm chính
+        // phần tìm kiếm chính
         this.jpanel_search = new JPanel(new BorderLayout());
         this.jpanel_search.setBackground(new Color(208, 255, 208));
         this.jpanel_search.add(this.jtextField_search, BorderLayout.CENTER);
         this.jpanel_search.add(this.jmenu_item_search , BorderLayout.EAST);
 
-        // phần tìm kiếm gôồm cá các chức năng khác
+        // phần tìm kiếm gồm cá các chức năng khác
         this.jpanel_search_tool = new JPanel(new GridLayout(1, 2));
         this.jpanel_search_tool.setBackground(new Color(208, 255, 208));
         this.jpanel_search_tool.add(this.jpanel_search);
