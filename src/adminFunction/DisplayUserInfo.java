@@ -1,16 +1,14 @@
 package adminFunction;
 
-import controller.DictionaryController;
-import view.DictionaryView;
-
-import javax.swing.*;
-import java.awt.*;
+import controller.LibraryManagementController;
+import view.LibraryManagementView;
 
 public class DisplayUserInfo extends AdminFunction {
 
-    DictionaryController dictionaryController = new DictionaryController(this);
-    public DisplayUserInfo(DictionaryView dictionaryView) {
-        super(dictionaryView);
+    private Login login;
+    LibraryManagementController libraryManagementController = new LibraryManagementController(this);
+    public DisplayUserInfo(LibraryManagementView libraryManagementView) {
+        super(libraryManagementView);
     }
     public void displayUserInfo() {
 

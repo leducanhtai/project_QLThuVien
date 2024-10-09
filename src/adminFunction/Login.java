@@ -1,8 +1,8 @@
 package adminFunction;
 
-import controller.DictionaryController;
+import controller.LibraryManagementController;
 import model.AdminModel;
-import view.DictionaryView;
+import view.LibraryManagementView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +10,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Login extends AdminFunction {
-    DictionaryController dictionaryController = new DictionaryController(this);
+    LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     private JMenuItem jmenuItem_displayUserInfor;
     private JMenuItem jmenuItem_addUser;
     private JMenuItem jmenuItem_displayDocument;
     private JMenuItem jmenuItem_borrowDocument;
+    public JPanel jpanel_admin_contenPane;
 
-    public Login(DictionaryView dictionaryview) {
+
+    public Login(LibraryManagementView dictionaryview) {
         super(dictionaryview);
         this.adminModel = new AdminModel();
 
@@ -62,7 +64,7 @@ public class Login extends AdminFunction {
         this.jmenu_item_DangNhap = new JMenuItem("Đăng nhập");
         this.jmenu_item_DangNhap.setFont(new Font("Tahoma", Font.BOLD, 40));
         this.jmenu_item_DangNhap.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_DangNhap.addActionListener(this.dictionaryController);
+        this.jmenu_item_DangNhap.addActionListener(this.libraryManagementController);
 
         JPanel jpanel_khoangTrong_1 = new JPanel(new BorderLayout());
         jpanel_khoangTrong_1.setBackground(new Color(154,205,50));
@@ -95,15 +97,15 @@ public class Login extends AdminFunction {
 
         this.jpanel_noiDung_DangNhap = new JPanel(new GridLayout(5, 2, 10, 10));
         this.jpanel_noiDung_DangNhap.setBackground(new Color(154,205,50));
-        this.jpanel_noiDung_DangNhap.add(this.dictionaryView.jlabel_1);
-        this.jpanel_noiDung_DangNhap.add(this.dictionaryView.jlabel_2);
+        this.jpanel_noiDung_DangNhap.add(this.libraryManagementView.jlabel_1);
+        this.jpanel_noiDung_DangNhap.add(this.libraryManagementView.jlabel_2);
 
         this.jpanel_noiDung_DangNhap.add(this.jtextField_tenDangNhap);
         this.jpanel_noiDung_DangNhap.add(this.jlabel_tenDangNhap);
         this.jpanel_noiDung_DangNhap.add(this.jtextField_matKhau);
         this.jpanel_noiDung_DangNhap.add(this.jlabel_matKhau);
         this.jpanel_noiDung_DangNhap.add(this.jLabel_checkDangNhap);
-        this.jpanel_noiDung_DangNhap.add(this.dictionaryView.jlabel_9);
+        this.jpanel_noiDung_DangNhap.add(this.libraryManagementView.jlabel_9);
 
 //        jpanel_noiDung_DangNhap.add(jlabel_11);
 //        jpanel_noiDung_DangNhap.add(jlabel_10);
@@ -141,11 +143,11 @@ public class Login extends AdminFunction {
 
         addHoverEffect(jmenu_item_DangNhap);
 
-        this.dictionaryView.contentPane.add(jlabel_7, BorderLayout.NORTH);
-        this.dictionaryView.contentPane.add(jlabel_6, BorderLayout.EAST);
-        this.dictionaryView.contentPane.add(jlabel_5, BorderLayout.WEST);
-        this.dictionaryView.contentPane.add(jlabel_4, BorderLayout.SOUTH);
-        this.dictionaryView.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
+        this.libraryManagementView.contentPane.add(jlabel_7, BorderLayout.NORTH);
+        this.libraryManagementView.contentPane.add(jlabel_6, BorderLayout.EAST);
+        this.libraryManagementView.contentPane.add(jlabel_5, BorderLayout.WEST);
+        this.libraryManagementView.contentPane.add(jlabel_4, BorderLayout.SOUTH);
+        this.libraryManagementView.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
     }
 
     public boolean checkDangNhap(){
@@ -163,35 +165,37 @@ public class Login extends AdminFunction {
         return false;
     }
     public void selectAdmin() {
-        this.dictionaryView.clearPanel();
-        this.dictionaryView.setColorTool(this.dictionaryView.change);
-        this.dictionaryView.change = "Admin";
-        this.dictionaryView.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
-        this.dictionaryView.jpanel_Admin.setBackground(new Color(154,205,50));
+        this.libraryManagementView.clearPanel();
+        this.libraryManagementView.setColorTool(this.libraryManagementView.change);
+        this.libraryManagementView.change = "Admin";
+        this.libraryManagementView.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
+        this.libraryManagementView.jpanel_Admin.setBackground(new Color(154,205,50));
 
         dangNhap();
 
         // Cập nhật lại giao diện
-        this.dictionaryView.contentPane.revalidate();
-        this.dictionaryView.contentPane.repaint();
+        this.libraryManagementView.contentPane.revalidate();
+        this.libraryManagementView.contentPane.repaint();
 
     }
 
     public void adminTool(){
-        this.dictionaryView.clearPanel();
+        this.libraryManagementView.clearPanel();
         JPanel jpanel_adminTool_displayUserInfor = new JPanel(new FlowLayout());
         jpanel_adminTool_displayUserInfor.setBackground(new Color(250,128,114));
         jmenuItem_displayUserInfor = new JMenuItem("UserInfor");
         jmenuItem_displayUserInfor.setFont(new Font("Tahoma", Font.BOLD, 20));
         jmenuItem_displayUserInfor.setIcon(new ImageIcon("src\\view\\image\\user.png"));
+        jmenuItem_displayUserInfor.addActionListener(libraryManagementController);
         jpanel_adminTool_displayUserInfor.add(jmenuItem_displayUserInfor);
 
         //Display Document  displayDocument
         JPanel jpanel_adminTool_displayDocument = new JPanel(new FlowLayout());
         jpanel_adminTool_displayDocument.setBackground(new Color(173,216,230));
-         jmenuItem_displayDocument = new JMenuItem("Document");
+        jmenuItem_displayDocument = new JMenuItem("Document");
         jmenuItem_displayDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
         jmenuItem_displayDocument.setIcon(new ImageIcon("src\\view\\image\\document.png"));
+        jmenuItem_displayDocument.addActionListener(libraryManagementController);
         jpanel_adminTool_displayDocument.add(jmenuItem_displayDocument);
 
         // Add User  addUser
@@ -200,6 +204,7 @@ public class Login extends AdminFunction {
         jmenuItem_addUser = new JMenuItem("Edit User");
         jmenuItem_addUser.setFont(new Font("Tahoma", Font.BOLD, 20));
         jmenuItem_addUser.setIcon(new ImageIcon("src\\view\\image\\editUser.png"));
+        jmenuItem_addUser.addActionListener(libraryManagementController);
         jpanel_adminTool_addUser.add(jmenuItem_addUser);
 
         //Borrow Document  borrowDocument
@@ -208,6 +213,7 @@ public class Login extends AdminFunction {
         jmenuItem_borrowDocument = new JMenuItem("Edit Document");
         jmenuItem_borrowDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
         jmenuItem_borrowDocument.setIcon(new ImageIcon("src\\view\\image\\editDocument.png"));
+        jmenuItem_borrowDocument.addActionListener(libraryManagementController);
         jpanel_adminTool_borrowDocument.add(jmenuItem_borrowDocument);
 
         //Remove Document removeDocument
@@ -224,19 +230,20 @@ public class Login extends AdminFunction {
 
         JPanel jpanel_adminTool = new JPanel(new GridLayout(1, 4, 10, 10));
         jpanel_adminTool.setBackground(new Color(208, 255, 208));
+        
         jpanel_adminTool.add(jpanel_adminTool_displayUserInfor);
         jpanel_adminTool.add(jpanel_adminTool_displayDocument);
         jpanel_adminTool.add(jpanel_adminTool_addUser);
         jpanel_adminTool.add(jpanel_adminTool_borrowDocument);
       //  jpanel_adminTool.add(jpanel_adminTool_removeDocument);
 
-        JPanel jpanel_admin_contenPane = new JPanel(new BorderLayout());
+        jpanel_admin_contenPane = new JPanel(new BorderLayout());
         jpanel_admin_contenPane.setBackground(new Color(208, 255, 208));
 
-        this.dictionaryView.contentPane.add(jpanel_adminTool, BorderLayout.NORTH);
-        this.dictionaryView.contentPane.add(jpanel_admin_contenPane, BorderLayout.CENTER);
-        this.dictionaryView.contentPane.revalidate();
-        this.dictionaryView.contentPane.repaint();
+        this.libraryManagementView.contentPane.add(jpanel_adminTool, BorderLayout.NORTH);
+        this.libraryManagementView.contentPane.add(jpanel_admin_contenPane, BorderLayout.CENTER);
+        this.libraryManagementView.contentPane.revalidate();
+        this.libraryManagementView.contentPane.repaint();
 
 
     }

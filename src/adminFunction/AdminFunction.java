@@ -1,17 +1,13 @@
 package adminFunction;
 
-import controller.DictionaryController;
-import view.DictionaryView;
-
-import javax.swing.*;
-import java.awt.*;
+import view.LibraryManagementView;
 //Test github
 
 public class AdminFunction {
 
-    protected DictionaryView dictionaryView;
-    public AdminFunction(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+    protected LibraryManagementView libraryManagementView;
+    public AdminFunction(LibraryManagementView libraryManagementView) {
+        this.libraryManagementView = libraryManagementView;
 
     }
 

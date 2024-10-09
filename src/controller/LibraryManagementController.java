@@ -2,28 +2,27 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Dictionary;
 
 import adminFunction.AdminFunction;
 import adminFunction.DisplayUserInfo;
 import adminFunction.Login;
-import view.DictionaryView;
+import view.LibraryManagementView;
 
-public class DictionaryController implements ActionListener{
-    private DictionaryView dictionaryView;
+public class LibraryManagementController implements ActionListener{
+    private LibraryManagementView libraryManagementView;
     private AdminFunction adminFunction;
     private Login login;
     private DisplayUserInfo displayUserInfo;
 
     //private DictionaryFuntion dictionaryFuntion;
 
-    public DictionaryController(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+    public LibraryManagementController(LibraryManagementView libraryManagementView) {
+        this.libraryManagementView = libraryManagementView;
     }
-    public DictionaryController(Login login) {
+    public LibraryManagementController(Login login) {
         this.login = login;
     }
-    public DictionaryController(DisplayUserInfo displayUserInfo) {
+    public LibraryManagementController(DisplayUserInfo displayUserInfo) {
         this.displayUserInfo = displayUserInfo;
     }
 
@@ -34,21 +33,21 @@ public class DictionaryController implements ActionListener{
         if(src.equals("Exit")) {
             System.exit(0);
         }else if(src.equals("Borrow")) {
-            this.dictionaryView.borrowedFunction.selectBorrow();
+            this.libraryManagementView.borrowedFunction.selectBorrow();
             System.out.println("đã ấn borrow");
         }else if(src.equals("Return")) {
-            this.dictionaryView.bookReturnFunction.selectReturn();
+            this.libraryManagementView.bookReturnFunction.selectReturn();
             System.out.println("đã ấn return");
         }else if(src.equals("Home")) {
-            this.dictionaryView.homeFunction.selectHome();
+            this.libraryManagementView.homeFunction.selectHome();
             System.out.println("đã ấn home");
         }else if(src.equals("Help")) {
-            this.dictionaryView.helpFunction.selectHelp();
+            this.libraryManagementView.helpFunction.selectHelp();
             System.out.println("đã ấn help");
         }else if(src.equals("Admin")) {
            // this.login.adminTool();
            // if(this.login.check == false){
-                this.dictionaryView.login.selectAdmin();
+                this.libraryManagementView.login.selectAdmin();
            // }else if(this.login.check == true) this.login.adminTool();
             System.out.println("đã ấn admin");
         }else if(src.equals("Đăng nhập")) {

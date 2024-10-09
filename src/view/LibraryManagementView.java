@@ -2,19 +2,14 @@ package view;
 // check git.llll
 import adminFunction.Login;
 import basicFunction.*;
-import controller.DictionaryController;
-import model.AdminModel;
+import controller.LibraryManagementController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-public class DictionaryView extends JFrame {
+public class LibraryManagementView extends JFrame {
 
     public JPanel contentPane;
     private JPanel jpanel_tool;
@@ -22,6 +17,10 @@ public class DictionaryView extends JFrame {
     public JPanel jpanel_search_tool;
     public JPanel jpanel_search_befor;
     public JPanel jpanel_center;
+
+    public JPanel jpanel_sign_in;
+    public JPanel jpanel_sign_in_click;
+    public JMenuItem jMenuItem_signIn;
 
     private JTextField jtextField_search;
     private JMenuItem jmenu_item_search;
@@ -64,14 +63,14 @@ public class DictionaryView extends JFrame {
 //    private JCheckBox jcheckbox_remember;
 //    private JMenuItem jmenu_item_dowload;
 
-    public DictionaryController dictionaryController = new DictionaryController(this);
+    public LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     public BorrowedFunction borrowedFunction = new BorrowedFunction(this);
     public BookReturnFunction bookReturnFunction = new BookReturnFunction(this);
     public HomeFunction homeFunction = new HomeFunction(this);
     public HelpFunction helpFunction = new HelpFunction(this);
     public Login login = new Login(this);
 
-    public DictionaryView() {
+    public LibraryManagementView() {
 
         this.init();
         this.setVisible(true);
@@ -90,7 +89,7 @@ public class DictionaryView extends JFrame {
         //this.jmenu_item_home.setForeground(new Color(255, 255, 255));
         this.jmenu_item_home.setForeground(new Color(64, 0, 128));
         this.jmenu_item_home.setIcon(new ImageIcon("src\\view\\image\\home.png"));
-        this.jmenu_item_home.addActionListener(dictionaryController);
+        this.jmenu_item_home.addActionListener(libraryManagementController);
         this.jpanel_home = new JPanel(new BorderLayout());
         this.jpanel_home.setBackground(new Color(154,205,50));
         this.jpanel_home.add(this.jmenu_item_home, BorderLayout.CENTER);
@@ -99,7 +98,7 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_Admin.setFont(new Font("Tahoma", Font.BOLD, 14));
         this.jmenu_item_Admin.setForeground(new Color(255, 255, 255));
         this.jmenu_item_Admin.setIcon(new ImageIcon("src\\view\\image\\Admin.png"));
-        this.jmenu_item_Admin.addActionListener(dictionaryController);
+        this.jmenu_item_Admin.addActionListener(libraryManagementController);
         this.jpanel_Admin = new JPanel(new BorderLayout());
         this.jpanel_Admin.setBackground(new Color(0, 128, 64));
         this.jpanel_Admin.add(this.jmenu_item_Admin, BorderLayout.CENTER);
@@ -108,7 +107,7 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_borrowBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
         this.jmenu_item_borrowBooks.setForeground(new Color(255, 255, 255));
         this.jmenu_item_borrowBooks.setIcon(new ImageIcon("src\\view\\image\\borrow.png"));
-        this.jmenu_item_borrowBooks.addActionListener(dictionaryController);
+        this.jmenu_item_borrowBooks.addActionListener(libraryManagementController);
         this.jpanel_borrowBooks = new JPanel(new BorderLayout());
         this.jpanel_borrowBooks.setBackground(new Color(0, 128, 64));
         this.jpanel_borrowBooks.add(this.jmenu_item_borrowBooks, BorderLayout.CENTER);
@@ -117,7 +116,7 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_returnBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
         this.jmenu_item_returnBooks.setForeground(new Color(255, 255, 255));
         this.jmenu_item_returnBooks.setIcon(new ImageIcon("src\\view\\image\\return.png"));
-        this.jmenu_item_returnBooks.addActionListener(dictionaryController);
+        this.jmenu_item_returnBooks.addActionListener(libraryManagementController);
         this.jpanel_returnBooks = new JPanel(new BorderLayout());
         this.jpanel_returnBooks.setBackground(new Color(0, 128, 64));
         this.jpanel_returnBooks.add(this.jmenu_item_returnBooks, BorderLayout.CENTER);
@@ -126,13 +125,13 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_exit.setFont(new Font("Tahoma", Font.BOLD, 14));
         this.jmenu_item_exit.setForeground(new Color(255, 255, 255));
         this.jmenu_item_exit.setIcon(new ImageIcon("src\\view\\image\\exit.png"));
-        this.jmenu_item_exit.addActionListener(dictionaryController);
+        this.jmenu_item_exit.addActionListener(libraryManagementController);
 
         this.jmenu_item_help = new JMenuItem("Help");
         this.jmenu_item_help.setFont(new Font("Tahoma", Font.BOLD, 14));
         this.jmenu_item_help.setForeground(new Color(255, 255, 255));
         this.jmenu_item_help.setIcon(new ImageIcon("src\\view\\image\\help.png"));
-        this.jmenu_item_help.addActionListener(dictionaryController);
+        this.jmenu_item_help.addActionListener(libraryManagementController);
         this.jpanel_help = new JPanel(new BorderLayout());
         this.jpanel_help.setBackground(new Color(0, 128, 64));
         this.jpanel_help.add(this.jmenu_item_help, BorderLayout.CENTER);
@@ -141,7 +140,7 @@ public class DictionaryView extends JFrame {
         this.jmenu_item_search.setFont(new Font("Tahoma", Font.BOLD, 40));
         this.jmenu_item_search.setForeground(new Color(255, 255, 255));
         this.jmenu_item_search.setIcon(new ImageIcon("src\\view\\image\\search.png"));
-        this.jmenu_item_search.addActionListener(dictionaryController);
+        this.jmenu_item_search.addActionListener(libraryManagementController);
 
         // phần chứa các chức năng
         this.jpanel_tool = new JPanel(new GridLayout(12, 1));
@@ -197,11 +196,27 @@ public class DictionaryView extends JFrame {
         this.jpanel_search.add(this.jtextField_search, BorderLayout.CENTER);
         this.jpanel_search.add(this.jmenu_item_search , BorderLayout.EAST);
 
+        // nút đăng nhập\
+        this.jMenuItem_signIn = new JMenuItem("Sign In");
+        this.jMenuItem_signIn.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jMenuItem_signIn.setForeground(new Color(255, 255, 255));
+        this.jMenuItem_signIn.setIcon(new ImageIcon("src\\view\\image\\signIn.png"));
+        this.jMenuItem_signIn.addActionListener(libraryManagementController);
+
+        this.jpanel_sign_in_click = new JPanel(new BorderLayout());
+        this.jpanel_sign_in_click.setBackground(new Color(0, 128, 64));
+        this.jpanel_sign_in_click.add(jMenuItem_signIn, BorderLayout.CENTER);
+
+        this.jpanel_sign_in = new JPanel(new GridLayout(1, 2));
+        this.jpanel_sign_in.setBackground(new Color(208, 255, 208));
+        this.jpanel_sign_in.add(this.jlabel_2);
+        this.jpanel_sign_in.add(this.jpanel_sign_in_click);
+
         // phần tìm kiếm gồm cá các chức năng khác
         this.jpanel_search_tool = new JPanel(new GridLayout(1, 2));
         this.jpanel_search_tool.setBackground(new Color(208, 255, 208));
         this.jpanel_search_tool.add(this.jpanel_search);
-        this.jpanel_search_tool.add(this.jlabel_2);
+        this.jpanel_search_tool.add(this.jpanel_sign_in);
 
         // phần tìm kiếm bao trùm
         this.jpanel_search_befor = new JPanel(new BorderLayout());

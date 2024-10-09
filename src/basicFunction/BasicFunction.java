@@ -1,10 +1,10 @@
 package basicFunction;
 
-import view.DictionaryView;
+import view.LibraryManagementView;
 
 public class BasicFunction {
-    protected DictionaryView dictionaryView;
-    public BasicFunction(DictionaryView dictionaryView) {
-        this.dictionaryView = dictionaryView;
+    protected LibraryManagementView libraryManagementView;
+    public BasicFunction(LibraryManagementView libraryManagementView) {
+        this.libraryManagementView = libraryManagementView;
     }
 }

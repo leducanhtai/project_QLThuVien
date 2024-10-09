@@ -1,22 +1,22 @@
 package basicFunction;
 
-import view.DictionaryView;
+import view.LibraryManagementView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class BorrowedFunction extends BasicFunction {
     //private DictionaryView dictionaryView;
-    public BorrowedFunction(DictionaryView dictionaryView) {
-        super(dictionaryView);
+    public BorrowedFunction(LibraryManagementView libraryManagementView) {
+        super(libraryManagementView);
     }
 
     public void selectBorrow() {
-        this.dictionaryView.clearPanel();
-        this.dictionaryView.setColorTool(dictionaryView.change);
-        this.dictionaryView.change = "Borrow";
-        this.dictionaryView.jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
-        this.dictionaryView.jpanel_borrowBooks.setBackground(new Color(154,205,50));
+        this.libraryManagementView.clearPanel();
+        this.libraryManagementView.setColorTool(libraryManagementView.change);
+        this.libraryManagementView.change = "Borrow";
+        this.libraryManagementView.jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
+        this.libraryManagementView.jpanel_borrowBooks.setBackground(new Color(154,205,50));
 
         // Tạo một JButton mới
         JButton gameButton = new JButton("Start Game");
@@ -25,11 +25,11 @@ public class BorrowedFunction extends BasicFunction {
         gameButton.setForeground(Color.GREEN);
 
         // Thêm JButton vào giữa panel
-        this.dictionaryView.contentPane.add(gameButton, BorderLayout.CENTER);
+        this.libraryManagementView.contentPane.add(gameButton, BorderLayout.CENTER);
 
         // Cập nhật lại giao diện
-        this.dictionaryView.contentPane.revalidate();
-        this.dictionaryView.contentPane.repaint();
+        this.libraryManagementView.contentPane.revalidate();
+        this.libraryManagementView.contentPane.repaint();
 
     }
 }
