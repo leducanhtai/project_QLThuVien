@@ -6,13 +6,23 @@ import view.DictionaryView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login extends AdminFunction {
     DictionaryController dictionaryController = new DictionaryController(this);
+    private JMenuItem jmenuItem_displayUserInfor;
+    private JMenuItem jmenuItem_addUser;
+    private JMenuItem jmenuItem_displayDocument;
+    private JMenuItem jmenuItem_borrowDocument;
+
     public Login(DictionaryView dictionaryview) {
         super(dictionaryview);
         this.adminModel = new AdminModel();
+
+
     }
+
     // phần đăng nhập cho admin
     private JTextField jtextField_tenDangNhap;
     private JTextField jtextField_matKhau;
@@ -28,6 +38,8 @@ public class Login extends AdminFunction {
     private JLabel jlabel_5;
     private JLabel jlabel_6;
     private JLabel jlabel_7;
+
+
 
     public void dangNhap(){
 
@@ -127,6 +139,8 @@ public class Login extends AdminFunction {
         this.jlabel_7.setFont(new Font("Tahoma", Font.BOLD, 80));
         this.jlabel_7.setBackground(new Color(0, 128, 64));
 
+        addHoverEffect(jmenu_item_DangNhap);
+
         this.dictionaryView.contentPane.add(jlabel_7, BorderLayout.NORTH);
         this.dictionaryView.contentPane.add(jlabel_6, BorderLayout.EAST);
         this.dictionaryView.contentPane.add(jlabel_5, BorderLayout.WEST);
@@ -167,7 +181,7 @@ public class Login extends AdminFunction {
         this.dictionaryView.clearPanel();
         JPanel jpanel_adminTool_displayUserInfor = new JPanel(new FlowLayout());
         jpanel_adminTool_displayUserInfor.setBackground(new Color(250,128,114));
-        JMenuItem jmenuItem_displayUserInfor = new JMenuItem("UserInfor");
+        jmenuItem_displayUserInfor = new JMenuItem("UserInfor");
         jmenuItem_displayUserInfor.setFont(new Font("Tahoma", Font.BOLD, 20));
         jmenuItem_displayUserInfor.setIcon(new ImageIcon("src\\view\\image\\user.png"));
         jpanel_adminTool_displayUserInfor.add(jmenuItem_displayUserInfor);
@@ -175,7 +189,7 @@ public class Login extends AdminFunction {
         //Display Document  displayDocument
         JPanel jpanel_adminTool_displayDocument = new JPanel(new FlowLayout());
         jpanel_adminTool_displayDocument.setBackground(new Color(173,216,230));
-        JMenuItem jmenuItem_displayDocument = new JMenuItem("Document");
+         jmenuItem_displayDocument = new JMenuItem("Document");
         jmenuItem_displayDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
         jmenuItem_displayDocument.setIcon(new ImageIcon("src\\view\\image\\document.png"));
         jpanel_adminTool_displayDocument.add(jmenuItem_displayDocument);
@@ -183,31 +197,38 @@ public class Login extends AdminFunction {
         // Add User  addUser
         JPanel jpanel_adminTool_addUser = new JPanel(new FlowLayout());
         jpanel_adminTool_addUser.setBackground(new Color(144,238,144));
-        JMenuItem jmenuItem_addUser = new JMenuItem("Add User");
+        jmenuItem_addUser = new JMenuItem("Edit User");
         jmenuItem_addUser.setFont(new Font("Tahoma", Font.BOLD, 20));
+        jmenuItem_addUser.setIcon(new ImageIcon("src\\view\\image\\editUser.png"));
         jpanel_adminTool_addUser.add(jmenuItem_addUser);
 
         //Borrow Document  borrowDocument
         JPanel jpanel_adminTool_borrowDocument = new JPanel(new FlowLayout());
         jpanel_adminTool_borrowDocument.setBackground(new Color(192,192,192));
-        JMenuItem jmenuItem_borrowDocument = new JMenuItem("Borrow Document");
+        jmenuItem_borrowDocument = new JMenuItem("Edit Document");
         jmenuItem_borrowDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
+        jmenuItem_borrowDocument.setIcon(new ImageIcon("src\\view\\image\\editDocument.png"));
         jpanel_adminTool_borrowDocument.add(jmenuItem_borrowDocument);
 
         //Remove Document removeDocument
-        JPanel jpanel_adminTool_removeDocument = new JPanel(new FlowLayout());
-        jpanel_adminTool_removeDocument.setBackground(new Color(192,192,192));
-        JMenuItem jmenuItem_removeDocument = new JMenuItem("Add User");
-        jmenuItem_removeDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jpanel_adminTool_removeDocument.add(jmenuItem_removeDocument);
+//        JPanel jpanel_adminTool_removeDocument = new JPanel(new FlowLayout());
+//        jpanel_adminTool_removeDocument.setBackground(new Color(192,192,192));
+//        JMenuItem jmenuItem_removeDocument = new JMenuItem("Add User");
+//        jmenuItem_removeDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
+//        jpanel_adminTool_removeDocument.add(jmenuItem_removeDocument);
 
-        JPanel jpanel_adminTool = new JPanel(new GridLayout(1, 7, 10, 10));
+        addHoverEffect(jmenuItem_displayUserInfor);
+        addHoverEffect(jmenuItem_addUser);
+        addHoverEffect(jmenuItem_displayDocument);
+        addHoverEffect(jmenuItem_borrowDocument);
+
+        JPanel jpanel_adminTool = new JPanel(new GridLayout(1, 4, 10, 10));
         jpanel_adminTool.setBackground(new Color(208, 255, 208));
         jpanel_adminTool.add(jpanel_adminTool_displayUserInfor);
         jpanel_adminTool.add(jpanel_adminTool_displayDocument);
         jpanel_adminTool.add(jpanel_adminTool_addUser);
         jpanel_adminTool.add(jpanel_adminTool_borrowDocument);
-        jpanel_adminTool.add(jpanel_adminTool_removeDocument);
+      //  jpanel_adminTool.add(jpanel_adminTool_removeDocument);
 
         JPanel jpanel_admin_contenPane = new JPanel(new BorderLayout());
         jpanel_admin_contenPane.setBackground(new Color(208, 255, 208));
@@ -218,6 +239,22 @@ public class Login extends AdminFunction {
         this.dictionaryView.contentPane.repaint();
 
 
+    }
+
+    public void addHoverEffect(JMenuItem menuItem) {
+        menuItem.addMouseListener(new MouseAdapter() {
+            Color originalColor = menuItem.getForeground();
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                menuItem.setForeground(new Color(255,192,203)); // Màu mờ đi khi chuột vào
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                menuItem.setForeground(originalColor); // Khôi phục màu ban đầu khi chuột ra
+            }
+        });
     }
 
 }

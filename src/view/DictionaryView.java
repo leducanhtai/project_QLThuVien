@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class DictionaryView extends JFrame {
 
     public JPanel contentPane;
@@ -73,6 +76,8 @@ public class DictionaryView extends JFrame {
         this.init();
         this.setVisible(true);
         this.change = "";
+
+
     }
     public void init() {
         this.setTitle("Dictinary");
@@ -293,5 +298,7 @@ public class DictionaryView extends JFrame {
             this.jpanel_Admin.setBackground(new Color(0, 128, 64));
         }
     }
+
+
 
 }
