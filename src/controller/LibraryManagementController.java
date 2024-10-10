@@ -7,12 +7,14 @@ import adminFunction.AdminFunction;
 import adminFunction.DisplayUserInfo;
 import adminFunction.Login;
 import view.LibraryManagementView;
+import view.sign_in_up.SignIn;
 
 public class LibraryManagementController implements ActionListener{
     private LibraryManagementView libraryManagementView;
     private AdminFunction adminFunction;
     private Login login;
-    private DisplayUserInfo displayUserInfo;
+
+    private SignIn signIn;
 
     //private DictionaryFuntion dictionaryFuntion;
 
@@ -22,9 +24,10 @@ public class LibraryManagementController implements ActionListener{
     public LibraryManagementController(Login login) {
         this.login = login;
     }
-    public LibraryManagementController(DisplayUserInfo displayUserInfo) {
-        this.displayUserInfo = displayUserInfo;
-    }
+//    public LibraryManagementController(DisplayUserInfo displayUserInfo) {
+//        this.displayUserInfo = displayUserInfo;
+//    }
+    public LibraryManagementController(SignIn signIn) {this.signIn = signIn;}
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -52,19 +55,31 @@ public class LibraryManagementController implements ActionListener{
             System.out.println("đã ấn admin");
         }else if(src.equals("Đăng nhập")) {
             boolean kt = this.login.checkDangNhap();
-           // if(kt){
-               // this.login.check = true;
-               // System.out.println(login.check);
+           if(kt){
+                //this.login.check = true;
+                //System.out.println(login.check);
                 this.login.jLabel_checkDangNhap.setText(" ");
                 this.login.adminTool();
                 System.out.println(kt);
-//            }else if(!kt){
-//                System.out.println(kt);
-//                this.login.jLabel_checkDangNhap.setText("tên đăng nhâp hoặc mật khẩu sai");
-//            }
+            }else if(!kt){
+                System.out.println(kt);
+                this.login.jLabel_checkDangNhap.setText("tên đăng nhâp hoặc mật khẩu sai");
+            }
+        }else if(src.equals("     SIGN IN")) {
+            System.out.println(src);
+            if (signIn.checkDangNhap()) {
+                signIn.closeLoginWindow();
+                System.out.println("YES");
+            } else {
+                System.out.println("Login failed. Incorrect username or password.");
+            }
+        }else if(src.equals("UserInfor")) {
+            this.login.displayUserInfo();
         }
 
 
     }
+
+
 
 }

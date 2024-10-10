@@ -108,4 +108,5 @@ public class singup extends JFrame {
         passwordField_2.setBounds(41, 494, 543, 79);
         panel_1.add(passwordField_2);
     }
+    
 }

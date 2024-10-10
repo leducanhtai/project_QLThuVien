@@ -11,12 +11,29 @@ public class Student {
     private String libraryId;
     private String username;
     private String password;
+    private String email;
+    private String phone;
+    private int soSachMuon;
 
-    public Student(String fullName, String libraryId, String username, String password) {
+    public Student(String fullName,  String username, String password, String email, String phone) {
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.libraryId = "";
+        this.soSachMuon = 0;
+    }
+
+    public Student(String fullName, String libraryId, String username, String password,
+                   String email, String phone, int soSachMuon) {
         this.fullName = fullName;
         this.libraryId = libraryId;
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.soSachMuon = soSachMuon;
     }
 
     public String getFullName() {
@@ -51,26 +68,28 @@ public class Student {
         this.password = password;
     }
 
-    public static List<Student> readStudentsFromFile(String fileName) {
-        List<Student> students = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Tách dữ liệu trong file đầu vào thành các phần
-                String[] studentData = line.split(",");
-                if (studentData.length == 4) {
-                    String fullName = studentData[0];
-                    String libraryId = studentData[1];
-                    String username = studentData[2];
-                    String password = studentData[3];
-                    // Thêm đối tượng mới vào danh sách
-                    Student student = new Student(fullName, libraryId, username, password);
-                    students.add(student);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return students;
+    public String getEmail() {
+        return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getSoSachMuon() {
+        return soSachMuon;
+    }
+
+    public void setSoSachMuon(int soSachMuon) {
+        this.soSachMuon = soSachMuon;
+    }
+
 }

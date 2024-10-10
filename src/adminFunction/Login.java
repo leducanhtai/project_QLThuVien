@@ -1,15 +1,20 @@
 package adminFunction;
 
 import controller.LibraryManagementController;
+import model.AdminManagementModel;
 import model.AdminModel;
+import model.Student;
+import model.StudentManagementModel;
 import view.LibraryManagementView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class Login extends AdminFunction {
+
     LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     private JMenuItem jmenuItem_displayUserInfor;
     private JMenuItem jmenuItem_addUser;
@@ -18,11 +23,14 @@ public class Login extends AdminFunction {
     public JPanel jpanel_admin_contenPane;
 
 
+    private StudentManagementModel studentManagementModel;
+    private JTable studentTable;
+
+
     public Login(LibraryManagementView dictionaryview) {
         super(dictionaryview);
-        this.adminModel = new AdminModel();
-
-
+        this.adminManagementModel = new AdminManagementModel();
+        this.studentManagementModel = new StudentManagementModel();
     }
 
     // phần đăng nhập cho admin
@@ -35,7 +43,7 @@ public class Login extends AdminFunction {
     private JPanel jpanel_DangNhap;
     private JPanel jpanel_click_DangNhap;
     private JPanel jpanel_noiDung_DangNhap;
-    private AdminModel adminModel;
+    private AdminManagementModel adminManagementModel;
     private JLabel jlabel_4;
     private JLabel jlabel_5;
     private JLabel jlabel_6;
@@ -150,19 +158,24 @@ public class Login extends AdminFunction {
         this.libraryManagementView.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
     }
 
-    public boolean checkDangNhap(){
+    public boolean checkDangNhap() {
+        // Get input username and password
         String tenAdmin = this.jtextField_tenDangNhap.getText();
         String matKhau = this.jtextField_matKhau.getText();
-        this.adminModel.adminModelList = this.adminModel.setAdminModelList();
-        for(int i = 0; i<adminModel.adminModelList.size(); i++){
-            AdminModel admin = adminModel.adminModelList.get(i);
 
-            // Kiểm tra xem tenAdmin và matKhau có khớp không
+        // Fetch admin list
+        this.adminManagementModel.setAdminList(); // Load the admin list from file
+
+        // Check if username and password match any admin in the list
+        ArrayList<AdminModel> adminList = adminManagementModel.getAdminList();  // Use the getter method
+
+        for (AdminModel admin : adminList) {
             if (tenAdmin.equals(admin.getTenDangNhap()) && matKhau.equals(admin.getMatKhau())) {
-                return true; // Đăng nhập thành công
+                return true; // Login successful
             }
         }
-        return false;
+
+        return false; // Login failed
     }
     public void selectAdmin() {
         this.libraryManagementView.clearPanel();
@@ -263,5 +276,53 @@ public class Login extends AdminFunction {
             }
         });
     }
+
+    public void displayUserInfo() {
+        // Clear all components from the panel
+        jpanel_admin_contenPane.removeAll();
+
+        // Load student data from the file
+        this.studentManagementModel.setStudents("src\\model\\data\\student.txt");
+        ArrayList<Student> students = this.studentManagementModel.getStudents();
+
+        // Define column names and populate table data
+        String[] columnNames = {"Full Name", "Library ID", "Username", "Password", "Email", "Phone", "Age"};
+        Object[][] data = new Object[students.size()][columnNames.length];
+
+        for (int i = 0; i < students.size(); i++) {
+            Student student = students.get(i);
+            data[i][0] = student.getFullName();
+            data[i][1] = student.getLibraryId();
+            data[i][2] = student.getUsername();
+            data[i][3] = student.getPassword();
+            data[i][4] = student.getEmail();
+            data[i][5] = student.getPhone();
+            data[i][6] = student.getSoSachMuon();
+        }
+
+        // Create JTable with the student data
+        studentTable = new JTable(data, columnNames);
+        studentTable.setFillsViewportHeight(true);
+
+        // Set custom font for table
+        Font tableFont = new Font("Arial", Font.PLAIN, 16);  // Set font and size (e.g., 16pt)
+        studentTable.setFont(tableFont);
+
+        // Set row height to fit the new font size
+        studentTable.setRowHeight(25);  // Adjust row height as needed
+
+        // Wrap the table in a scroll pane
+        JScrollPane scrollPane = new JScrollPane(studentTable);
+
+        // Add the scroll pane to the panel
+        jpanel_admin_contenPane.setLayout(new BorderLayout());
+        jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
+
+        // Refresh the panel to display the updated content
+
+        jpanel_admin_contenPane.revalidate();
+        jpanel_admin_contenPane.repaint();
+    }
+
 
 }

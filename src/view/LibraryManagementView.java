@@ -1,5 +1,6 @@
 package view;
 // check git.llll
+import adminFunction.DisplayUserInfo;
 import adminFunction.Login;
 import basicFunction.*;
 import controller.LibraryManagementController;
@@ -63,12 +64,13 @@ public class LibraryManagementView extends JFrame {
 //    private JCheckBox jcheckbox_remember;
 //    private JMenuItem jmenu_item_dowload;
 
-    public LibraryManagementController libraryManagementController = new LibraryManagementController(this);
+    LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     public BorrowedFunction borrowedFunction = new BorrowedFunction(this);
     public BookReturnFunction bookReturnFunction = new BookReturnFunction(this);
     public HomeFunction homeFunction = new HomeFunction(this);
     public HelpFunction helpFunction = new HelpFunction(this);
     public Login login = new Login(this);
+    public DisplayUserInfo displayUserInfo = new DisplayUserInfo(this);
 
     public LibraryManagementView() {
 
@@ -204,7 +206,7 @@ public class LibraryManagementView extends JFrame {
         this.jMenuItem_signIn.addActionListener(libraryManagementController);
 
         this.jpanel_sign_in_click = new JPanel(new BorderLayout());
-        this.jpanel_sign_in_click.setBackground(new Color(0, 128, 64));
+        this.jpanel_sign_in_click.setBackground(new Color(0,255,0));
         this.jpanel_sign_in_click.add(jMenuItem_signIn, BorderLayout.CENTER);
 
         this.jpanel_sign_in = new JPanel(new GridLayout(1, 2));

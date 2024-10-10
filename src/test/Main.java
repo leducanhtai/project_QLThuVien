@@ -1,10 +1,13 @@
 package test;
 
 import view.LibraryManagementView;
+import view.sign_in_up.SignIn;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
+
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -13,6 +16,5 @@ public class Main {
             // TODO: handle exception
             e.printStackTrace();
         }
-
     }
 }
