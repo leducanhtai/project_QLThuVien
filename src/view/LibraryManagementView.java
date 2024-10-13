@@ -87,7 +87,6 @@ public class LibraryManagementView extends JFrame {
     private JTable jtable_soSachMuon;
 
     private DisplayUserInfo displayUserInfo;
-    //private StudentManagementModel studentManagementModel;
     private JTable studentTable;
 
 
@@ -96,16 +95,13 @@ public class LibraryManagementView extends JFrame {
     public Change changeModel;
     public String change;
 
-//    private JCheckBox jcheckbox_remember;
-//    private JMenuItem jmenu_item_dowload;
-
     LibraryManagementController libraryManagementController = new LibraryManagementController(this);
+    private JMenuItem jmenu_item_search_user;
 
     public LibraryManagementView() {
         this.change = "";
         this.changeModel = new Change();
         this.adminManagementModel = new AdminManagementModel();
-        //this.studentManagementModel = new StudentManagementModel();
         this.displayUserInfo = new DisplayUserInfo();
 
         this.init();
@@ -515,13 +511,6 @@ public class LibraryManagementView extends JFrame {
         jmenuItem_borrowDocument.addActionListener(libraryManagementController);
         jpanel_adminTool_borrowDocument.add(jmenuItem_borrowDocument);
 
-        //Remove Document removeDocument
-//        JPanel jpanel_adminTool_removeDocument = new JPanel(new FlowLayout());
-//        jpanel_adminTool_removeDocument.setBackground(new Color(192,192,192));
-//        JMenuItem jmenuItem_removeDocument = new JMenuItem("Add User");
-//        jmenuItem_removeDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-//        jpanel_adminTool_removeDocument.add(jmenuItem_removeDocument);
-
         addHoverEffect(jmenuItem_displayUserInfor);
         addHoverEffect(jmenuItem_addUser);
         addHoverEffect(jmenuItem_displayDocument);
@@ -577,45 +566,11 @@ public class LibraryManagementView extends JFrame {
                   this.studentTable = this.displayUserInfo.getStudentTable();
 
             }
-            JPanel jpanel_searchUser = new JPanel(new BorderLayout());
-            jpanel_searchUser.setBackground(new Color(208, 255, 208));
-            JPanel jpanel_searchUserInfor = new JPanel(new GridLayout(1, 4, 10, 10));
-            jpanel_searchUserInfor.setBackground(new Color(208, 255, 208));
-
-            JTextField jtextField_searchUser_byID = new JTextField();
-            jtextField_searchUser_byID.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jpanel_searchUserInfor.add(jtextField_searchUser_byID);
-
-            JLabel jlabel_searchUser = new JLabel("NHập ID");
-            jlabel_searchUser.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jpanel_searchUserInfor.add(jlabel_searchUser);
-
-            JPanel jpanel_clickSearchUser = new JPanel(new BorderLayout());
-            jpanel_clickSearchUser.setBackground(new Color(0,191,255));
-            JMenuItem jmenu_item_search_user = new JMenuItem("Search User");
-            jmenu_item_search_user.setFont(new Font("Tahoma", Font.BOLD, 30));
-            addHoverEffect(jmenu_item_search_user);
-            jmenu_item_search_user.addActionListener(libraryManagementController);
-            jpanel_clickSearchUser.add(jmenu_item_search_user, BorderLayout.CENTER);
-            jpanel_searchUserInfor.add(jpanel_clickSearchUser);
-
-            JLabel jlabel_khtr = new JLabel("");
-            jpanel_searchUserInfor.add(jlabel_khtr);
-
-            // chỉ là phần tạo khoang trắng
-            this.jlabel_3 = new JLabel(" ");
-            this.jlabel_3.setFont(new Font("Tahoma", Font.BOLD, 100));
-            this.jlabel_3.setBackground(new Color(0, 128, 64));
-
-
-            jpanel_searchUser.add(jpanel_searchUserInfor, BorderLayout.NORTH);
-            jpanel_searchUser.add(jlabel_3, BorderLayout.CENTER);
 
             JScrollPane scrollPane = new JScrollPane(studentTable);
             jpanel_admin_contenPane.setLayout(new BorderLayout());
             jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
-            jpanel_admin_contenPane.add(jpanel_searchUser, BorderLayout.SOUTH);
-
+            searchUser();
             jpanel_admin_contenPane.revalidate();
             jpanel_admin_contenPane.repaint();
         }
@@ -681,8 +636,46 @@ public class LibraryManagementView extends JFrame {
         jpanel_admin_contenPane.repaint();
     }
 
+    public void searchUser(){
+        JPanel jpanel_searchUser = new JPanel(new BorderLayout());
+        jpanel_searchUser.setBackground(new Color(208, 255, 208));
+        JPanel jpanel_searchUserInfor = new JPanel(new GridLayout(1, 4, 10, 10));
+        jpanel_searchUserInfor.setBackground(new Color(208, 255, 208));
 
-    public void searchUser() {
+        JTextField jtextField_searchUser_byID = new JTextField();
+        jtextField_searchUser_byID.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jpanel_searchUserInfor.add(jtextField_searchUser_byID);
+
+        JLabel jlabel_searchUser = new JLabel("NHập ID");
+        jlabel_searchUser.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jpanel_searchUserInfor.add(jlabel_searchUser);
+
+        JPanel jpanel_clickSearchUser = new JPanel(new BorderLayout());
+        jpanel_clickSearchUser.setBackground(new Color(0,191,255));
+        jmenu_item_search_user = new JMenuItem("Search User");
+        jmenu_item_search_user.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jmenu_item_search_user.setIcon(new ImageIcon("src\\view\\image\\search_user.png"));
+        addHoverEffect(jmenu_item_search_user);
+        jmenu_item_search_user.addActionListener(libraryManagementController);
+        jpanel_clickSearchUser.add(jmenu_item_search_user, BorderLayout.CENTER);
+        jpanel_searchUserInfor.add(jpanel_clickSearchUser);
+
+        JLabel jlabel_khtr = new JLabel("");
+        jpanel_searchUserInfor.add(jlabel_khtr);
+
+        // chỉ là phần tạo khoang trắng
+        this.jlabel_3 = new JLabel(" ");
+        this.jlabel_3.setFont(new Font("Tahoma", Font.BOLD, 100));
+        this.jlabel_3.setBackground(new Color(0, 128, 64));
+
+
+        jpanel_searchUser.add(jpanel_searchUserInfor, BorderLayout.NORTH);
+        jpanel_searchUser.add(jlabel_3, BorderLayout.CENTER);
+
+        jpanel_admin_contenPane.add(jpanel_searchUser, BorderLayout.SOUTH);
+    }
+
+    public void clickSearchUser() {
         // Remove all components from jpanel_admin_contenPane
         jpanel_admin_contenPane.removeAll();
 
