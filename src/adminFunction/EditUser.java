@@ -1,19 +1,17 @@
 package adminFunction;
 
-import controller.LibraryManagementController;
 import model.Student;
 import model.StudentManagementModel;
-import view.LibraryManagementView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class DisplayUserInfo {
+public class EditUser {
     private JTable studentTable;
     private StudentManagementModel studentManagementModel;
 
-    public DisplayUserInfo() {
+    public EditUser() {
         this.studentTable = new JTable();
         this.studentManagementModel = new StudentManagementModel();
     }
@@ -67,5 +65,4 @@ public class DisplayUserInfo {
     public void setStudentTable(JTable studentTable) {
         this.studentTable = studentTable;
     }
-
 }

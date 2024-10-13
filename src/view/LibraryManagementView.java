@@ -86,7 +86,8 @@ public class LibraryManagementView extends JFrame {
     private JPanel contentPane_profileUser;
     private JTable jtable_soSachMuon;
 
-    private DisplayUserInfo displayUserInfo;
+    public DisplayUserInfo displayUserInfo;
+    //private StudentManagementModel studentManagementModel;
     private JTable studentTable;
 
 
@@ -95,13 +96,17 @@ public class LibraryManagementView extends JFrame {
     public Change changeModel;
     public String change;
 
+//    private JCheckBox jcheckbox_remember;
+//    private JMenuItem jmenu_item_dowload;
+
     LibraryManagementController libraryManagementController = new LibraryManagementController(this);
-    private JMenuItem jmenu_item_search_user;
+    public JTextField jtextField_searchUser_byID;
 
     public LibraryManagementView() {
         this.change = "";
         this.changeModel = new Change();
         this.adminManagementModel = new AdminManagementModel();
+        //this.studentManagementModel = new StudentManagementModel();
         this.displayUserInfo = new DisplayUserInfo();
 
         this.init();
@@ -414,19 +419,16 @@ public class LibraryManagementView extends JFrame {
 
         this.jlabel_4 = new JLabel("       ");
         this.jlabel_4.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_4.setBackground(new Color(0, 128, 64));
 
         this.jlabel_5 = new JLabel("       ");
         this.jlabel_5.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_5.setBackground(new Color(0, 128, 64));
 
         this.jlabel_6 = new JLabel("       ");
         this.jlabel_6.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_6.setBackground(new Color(0, 128, 64));
 
         this.jlabel_7 = new JLabel("        ");
         this.jlabel_7.setFont(new Font("Tahoma", Font.BOLD, 80));
-        this.jlabel_7.setBackground(new Color(0, 128, 64));
+
 
         addHoverEffect(jmenu_item_DangNhap);
 
@@ -437,7 +439,7 @@ public class LibraryManagementView extends JFrame {
         this.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
     }
 
-//    public boolean checkDangNhap() {
+    //    public boolean checkDangNhap() {
 //        String tenAdmin = this.jtextField_tenDangNhap.getText();
 //        String matKhau = this.jtextField_matKhau.getText();
 //        this.adminManagementModel.setAdminList();
@@ -455,7 +457,6 @@ public class LibraryManagementView extends JFrame {
         clearPanel();
         this.setColorTool(this.change);
         this.change = "Admin";
-        this.changeModel.setDangNhap_admin(true);
         this.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
         this.jpanel_Admin.setBackground(new Color(154,205,50));
 
@@ -472,7 +473,6 @@ public class LibraryManagementView extends JFrame {
 
         this.setColorTool(this.change);
         this.change = "Admin";
-        this.changeModel.setDangNhap_admin(true);
         this.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
         this.jpanel_Admin.setBackground(new Color(154,205,50));
 
@@ -511,6 +511,13 @@ public class LibraryManagementView extends JFrame {
         jmenuItem_borrowDocument.addActionListener(libraryManagementController);
         jpanel_adminTool_borrowDocument.add(jmenuItem_borrowDocument);
 
+        //Remove Document removeDocument
+//        JPanel jpanel_adminTool_removeDocument = new JPanel(new FlowLayout());
+//        jpanel_adminTool_removeDocument.setBackground(new Color(192,192,192));
+//        JMenuItem jmenuItem_removeDocument = new JMenuItem("Add User");
+//        jmenuItem_removeDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
+//        jpanel_adminTool_removeDocument.add(jmenuItem_removeDocument);
+
         addHoverEffect(jmenuItem_displayUserInfor);
         addHoverEffect(jmenuItem_addUser);
         addHoverEffect(jmenuItem_displayDocument);
@@ -548,7 +555,7 @@ public class LibraryManagementView extends JFrame {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                menuItem.setForeground(originalColor); // Khôi phục màu ban đầu khi chuột ra
+                menuItem.setForeground(originalColor);
             }
         });
     }
@@ -562,8 +569,8 @@ public class LibraryManagementView extends JFrame {
             // Clear all components from the panel
             jpanel_admin_contenPane.removeAll();
             if(studentTable == null){
-                  this.displayUserInfo.createUserInforTable();
-                  this.studentTable = this.displayUserInfo.getStudentTable();
+                this.displayUserInfo.createUserInforTable();
+                this.studentTable = this.displayUserInfo.getStudentTable();
 
             }
 
@@ -571,78 +578,89 @@ public class LibraryManagementView extends JFrame {
             jpanel_admin_contenPane.setLayout(new BorderLayout());
             jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
             searchUser();
+
             jpanel_admin_contenPane.revalidate();
             jpanel_admin_contenPane.repaint();
         }
 
     }
 
-    public void profileuser() {
-        // Create the profile user panel
-        contentPane_profileUser = new JPanel();
-        contentPane_profileUser.setBackground(new Color(208, 255, 208));
-        contentPane_profileUser.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane_profileUser.setLayout(null); // Setting layout
+    public void editUser() {
+//        setColorTool(changeModel.getChange_admin());
+//       this.jpanel_adminTool_displayUserInfor.setBackground(new Color(205,92,92));
 
-        // Add the profile picture panel
-        JPanel jpanel_anh = new JPanel();
-        jpanel_anh.setBackground(new Color(192, 192, 192));
-        jpanel_anh.setBounds(42, 34, 248, 321);
-        contentPane_profileUser.add(jpanel_anh);
+        if(!this.changeModel.getChange_admin().equals("Edit User")) {
+            this.changeModel.setChange_admin("Edit User");
+            // Clear all components from the panel
+            jpanel_admin_contenPane.removeAll();
+            if(studentTable == null){
+                this.displayUserInfo.createUserInforTable();
+                this.studentTable = this.displayUserInfo.getStudentTable();
 
-        // Add user information labels
-        JLabel jlabel_profileUser_ten = new JLabel("Họ và tên: Lê Đức Anh Tài");
-        jlabel_profileUser_ten.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jlabel_profileUser_ten.setBounds(327, 38, 485, 53);
-        contentPane_profileUser.add(jlabel_profileUser_ten);
+            }
 
-        JLabel jlabel_profileUser_id = new JLabel("Mã thư viện: 1234567");
-        jlabel_profileUser_id.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jlabel_profileUser_id.setBounds(327, 101, 485, 53);
-        contentPane_profileUser.add(jlabel_profileUser_id);
+            JPanel jpanel_adminTool_addUser = new JPanel(new FlowLayout());
+            jpanel_adminTool_addUser.setBackground(new Color(124,252,0));
+            JMenuItem jmenuItem_addUser = new JMenuItem("Add");
+            jmenuItem_addUser.setFont(new Font("Tahoma", Font.BOLD, 20));
+            jpanel_adminTool_addUser.add(jmenuItem_addUser);
 
-        JLabel jlabel_profileUser_sdt = new JLabel("Số điện thoại: 0384918817");
-        jlabel_profileUser_sdt.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jlabel_profileUser_sdt.setBounds(327, 177, 524, 53);
-        contentPane_profileUser.add(jlabel_profileUser_sdt);
+            JPanel jpanel_adminTool_removeUser = new JPanel(new FlowLayout());
+            jpanel_adminTool_removeUser.setBackground(new Color(255,99,71));
+            JMenuItem jmenuItem_removeUser = new JMenuItem("Delete");
+            jmenuItem_removeUser.setFont(new Font("Tahoma", Font.BOLD, 20));
+            jpanel_adminTool_removeUser.add(jmenuItem_removeUser);
 
-        JLabel jlabel_profileUser_email = new JLabel("email: taile13092k5@gmail.com");
-        jlabel_profileUser_email.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jlabel_profileUser_email.setBounds(327, 252, 623, 53);
-        contentPane_profileUser.add(jlabel_profileUser_email);
+            JPanel jpanel_adminTool_updateUser = new JPanel(new FlowLayout());
+            jpanel_adminTool_updateUser.setBackground(new Color(222,184,135));
+            JMenuItem jmenuItem_updateUser = new JMenuItem("Update");
+            jmenuItem_updateUser.setFont(new Font("Tahoma", Font.BOLD, 20));
+            jpanel_adminTool_updateUser.add(jmenuItem_updateUser);
 
-        JLabel jlabel_profileUser_soSachMuon = new JLabel("Danh sách đang mượn:");
-        jlabel_profileUser_soSachMuon.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jlabel_profileUser_soSachMuon.setBounds(42, 386, 485, 53);
-        contentPane_profileUser.add(jlabel_profileUser_soSachMuon);
+            JLabel jlabel_kt = new JLabel("        ");
+            jlabel_kt.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        // Add the borrowing list panel
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(169, 243, 196));
-        panel_1.setBounds(42, 449, 1176, 299);
-        contentPane_profileUser.add(panel_1);
-        panel_1.setLayout(new BorderLayout(0, 0));
+            JLabel jlabel_kt2 = new JLabel("        ");
+            jlabel_kt2.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        // Add table to the panel
-        jtable_soSachMuon = new JTable();
-        JScrollPane jscrollPane_soSachMuon = new JScrollPane(jtable_soSachMuon);
-        panel_1.add(jscrollPane_soSachMuon, BorderLayout.CENTER);
+            JLabel jlabel_kt3 = new JLabel("        ");
+            jlabel_kt3.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        // Add the profile user panel to the admin content pane
-        jpanel_admin_contenPane.add(contentPane_profileUser);
+            JLabel jlabel_kt4 = new JLabel("        ");
+            jlabel_kt4.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        // Make sure to refresh the admin content pane
-        jpanel_admin_contenPane.revalidate();
-        jpanel_admin_contenPane.repaint();
+
+
+            JPanel jpanel_adminTool_editUser = new JPanel(new GridLayout(1,7, 5, 5));
+            jpanel_adminTool_editUser.setBackground(new Color(208, 255, 208));
+            jpanel_adminTool_editUser.add(jpanel_adminTool_addUser);
+            jpanel_adminTool_editUser.add(jpanel_adminTool_removeUser);
+            jpanel_adminTool_editUser.add(jpanel_adminTool_updateUser);
+            jpanel_adminTool_editUser.add(jlabel_kt);
+            jpanel_adminTool_editUser.add(jlabel_kt2);
+            jpanel_adminTool_editUser.add(jlabel_kt3);
+            jpanel_adminTool_editUser.add(jlabel_kt4);
+
+
+            JScrollPane scrollPane = new JScrollPane(studentTable);
+            jpanel_admin_contenPane.setLayout(new BorderLayout());
+            jpanel_admin_contenPane.add(jpanel_adminTool_editUser, BorderLayout.NORTH);
+            jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
+            searchUser();
+
+            jpanel_admin_contenPane.revalidate();
+            jpanel_admin_contenPane.repaint();
+        }
+
     }
 
-    public void searchUser(){
+    public void searchUser() {
         JPanel jpanel_searchUser = new JPanel(new BorderLayout());
         jpanel_searchUser.setBackground(new Color(208, 255, 208));
         JPanel jpanel_searchUserInfor = new JPanel(new GridLayout(1, 4, 10, 10));
         jpanel_searchUserInfor.setBackground(new Color(208, 255, 208));
 
-        JTextField jtextField_searchUser_byID = new JTextField();
+        jtextField_searchUser_byID = new JTextField();
         jtextField_searchUser_byID.setFont(new Font("Tahoma", Font.BOLD, 30));
         jpanel_searchUserInfor.add(jtextField_searchUser_byID);
 
@@ -652,7 +670,7 @@ public class LibraryManagementView extends JFrame {
 
         JPanel jpanel_clickSearchUser = new JPanel(new BorderLayout());
         jpanel_clickSearchUser.setBackground(new Color(0,191,255));
-        jmenu_item_search_user = new JMenuItem("Search User");
+        JMenuItem jmenu_item_search_user = new JMenuItem("Search User");
         jmenu_item_search_user.setFont(new Font("Tahoma", Font.BOLD, 30));
         jmenu_item_search_user.setIcon(new ImageIcon("src\\view\\image\\search_user.png"));
         addHoverEffect(jmenu_item_search_user);
@@ -675,16 +693,74 @@ public class LibraryManagementView extends JFrame {
         jpanel_admin_contenPane.add(jpanel_searchUser, BorderLayout.SOUTH);
     }
 
-    public void clickSearchUser() {
-        // Remove all components from jpanel_admin_contenPane
-        jpanel_admin_contenPane.removeAll();
+    public void profileuser(Student student) {
 
-        // Recreate the profileuser panel and add it to jpanel_admin_contenPane
-        profileuser();
+        contentPane_profileUser = new JPanel();
+        contentPane_profileUser.setBackground(new Color(208, 255, 208));
+        contentPane_profileUser.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane_profileUser.setLayout(null); // Setting layout
 
-        // Revalidate and repaint to refresh the UI
+        JPanel jpanel_anh = new JPanel();
+        jpanel_anh.setBackground(new Color(192, 192, 192));
+        jpanel_anh.setBounds(42, 34, 248, 321);
+        contentPane_profileUser.add(jpanel_anh);
+
+        JLabel jlabel_profileUser_ten = new JLabel("Họ và tên: "+student.getFullName());
+        jlabel_profileUser_ten.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jlabel_profileUser_ten.setBounds(327, 38, 485, 53);
+        contentPane_profileUser.add(jlabel_profileUser_ten);
+
+        JLabel jlabel_profileUser_id = new JLabel("Mã thư viện: "+student.getLibraryId());
+        jlabel_profileUser_id.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jlabel_profileUser_id.setBounds(327, 101, 485, 53);
+        contentPane_profileUser.add(jlabel_profileUser_id);
+
+        JLabel jlabel_profileUser_sdt = new JLabel("Số điện thoại: "+student.getPhone());
+        jlabel_profileUser_sdt.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jlabel_profileUser_sdt.setBounds(327, 177, 524, 53);
+        contentPane_profileUser.add(jlabel_profileUser_sdt);
+
+        JLabel jlabel_profileUser_email = new JLabel("email: "+student.getEmail());
+        jlabel_profileUser_email.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jlabel_profileUser_email.setBounds(327, 252, 623, 53);
+        contentPane_profileUser.add(jlabel_profileUser_email);
+
+        JLabel jlabel_profileUser_soSachMuon = new JLabel("Danh sách đang mượn:");
+        jlabel_profileUser_soSachMuon.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jlabel_profileUser_soSachMuon.setBounds(42, 386, 485, 53);
+        contentPane_profileUser.add(jlabel_profileUser_soSachMuon);
+
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(169, 243, 196));
+        panel_1.setBounds(42, 449, 1176, 299);
+        contentPane_profileUser.add(panel_1);
+        panel_1.setLayout(new BorderLayout(0, 0));
+
+        jtable_soSachMuon = new JTable();
+        JScrollPane jscrollPane_soSachMuon = new JScrollPane(jtable_soSachMuon);
+        panel_1.add(jscrollPane_soSachMuon, BorderLayout.CENTER);
+
+        jpanel_admin_contenPane.add(contentPane_profileUser);
         jpanel_admin_contenPane.revalidate();
         jpanel_admin_contenPane.repaint();
+
+    }
+
+
+    public void clickSearchUser() {
+
+        Student student = this.displayUserInfo.kiemTraUserByID(jtextField_searchUser_byID.getText());
+        if(student != null) {
+            jpanel_admin_contenPane.removeAll();
+            profileuser(student);
+            jpanel_admin_contenPane.revalidate();
+            jpanel_admin_contenPane.repaint();
+        }else{
+            JOptionPane.showMessageDialog(
+                    null,
+                    "User with ID not found"
+            );
+        }
     }
 
 
