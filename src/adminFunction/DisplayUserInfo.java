@@ -44,8 +44,20 @@ public class DisplayUserInfo {
 
             Font tableFont = new Font("Arial", Font.PLAIN, 16);  // Set font and size (e.g., 16pt)
             studentTable.setFont(tableFont);
-            studentTable.setRowHeight(25);  // Adjust row height as needed
+            studentTable.setRowHeight(50);
 
+    }
+    public Student kiemTraUserByID(String libraryID) {
+        this.studentManagementModel.setStudents("src\\model\\data\\student.txt");
+        ArrayList<Student> students = this.studentManagementModel.getStudents();
+
+        for (Student student : students) {
+            if (student.getLibraryId().equals(libraryID)) {
+
+                return student;
+            }
+        }
+        return null;
     }
 
 
