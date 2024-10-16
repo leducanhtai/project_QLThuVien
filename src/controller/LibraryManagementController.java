@@ -46,23 +46,23 @@ public class LibraryManagementController implements ActionListener{
             this.libraryManagementView.selectHelp();
 
         }else if(src.equals("Admin")) {
-            // this.login.adminTool();
-            // if(this.login.check == false){
-            if(this.libraryManagementView.changeModel.getDangNhap_admin() == false)
-                this.libraryManagementView.selectAdmin();
-            else this.libraryManagementView.adminTool();
+           // this.login.adminTool();
+           // if(this.login.check == false){
+                if(this.libraryManagementView.changeModel.getDangNhap_admin() == false)
+                    this.libraryManagementView.selectAdmin();
+                else this.libraryManagementView.adminTool();
             this.libraryManagementView.changeModel.setChange_admin("");
-            // }else if(this.login.check == true) this.login.adminTool();
+           // }else if(this.login.check == true) this.login.adminTool();
 
         }else if(src.equals("Đăng nhập")) {
-            // boolean kt = this.libraryManagementView.checkDangNhap();
-            //if(kt){
+           // boolean kt = this.libraryManagementView.checkDangNhap();
+           //if(kt){
 
-            //this.libraryManagementView.jLabel_checkDangNhap.setText(" ");
-            this.libraryManagementView.changeModel.setChange_admin("");
-            this.libraryManagementView.adminTool();
-            this.libraryManagementView.changeModel.setDangNhap_admin(true);
-            //System.out.println(kt);
+                //this.libraryManagementView.jLabel_checkDangNhap.setText(" ");
+                this.libraryManagementView.changeModel.setChange_admin("");
+                this.libraryManagementView.adminTool();
+                this.libraryManagementView.changeModel.setDangNhap_admin(true);
+                //System.out.println(kt);
 //            }else if(!kt){
 //                System.out.println(kt);
 //                this.login.jLabel_checkDangNhap.setText("tên đăng nhâp hoặc mật khẩu sai");
@@ -80,10 +80,10 @@ public class LibraryManagementController implements ActionListener{
             System.out.println(libraryManagementView.changeModel.getChange_admin());
         }
         else if(src.equals("Edit User")) {
-            this.libraryManagementView.editUser();
+            this.libraryManagementView.adminView.editUser();
             System.out.println(libraryManagementView.changeModel.getChange_admin());
         }else if(src.equals("Search User")) {
-            this.libraryManagementView.clickSearchUser();
+            this.libraryManagementView.adminView.clickSearchUser();
             this.libraryManagementView.changeModel.setChange_admin("");
         }
 
