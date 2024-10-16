@@ -7,7 +7,10 @@ import view.LibraryManagementView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 
 public class DisplayUserInfo {
     private JTable studentTable;
@@ -46,6 +49,7 @@ public class DisplayUserInfo {
             studentTable.setFont(tableFont);
             studentTable.setRowHeight(50);
 
+
     }
     public Student kiemTraUserByID(String libraryID) {
         this.studentManagementModel.setStudents("src\\model\\data\\student.txt");
@@ -69,3 +73,5 @@ public class DisplayUserInfo {
     }
 
 }
+
+

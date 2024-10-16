@@ -80,10 +80,10 @@ public class LibraryManagementController implements ActionListener{
             System.out.println(libraryManagementView.changeModel.getChange_admin());
         }
         else if(src.equals("Edit User")) {
-            this.libraryManagementView.editUser();
+            this.libraryManagementView.adminView.editUser();
             System.out.println(libraryManagementView.changeModel.getChange_admin());
         }else if(src.equals("Search User")) {
-            this.libraryManagementView.clickSearchUser();
+            this.libraryManagementView.adminView.clickSearchUser();
             this.libraryManagementView.changeModel.setChange_admin("");
         }
 

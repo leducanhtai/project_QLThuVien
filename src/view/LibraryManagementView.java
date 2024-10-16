@@ -1,8 +1,6 @@
 package view;
 // check git.llll
 import adminFunction.Change;
-//import adminFunction.DisplayUserInfo;
-//import adminFunction.Login;
 import adminFunction.DisplayUserInfo;
 import basicFunction.*;
 import controller.LibraryManagementController;
@@ -77,18 +75,13 @@ public class LibraryManagementView extends JFrame {
     private JLabel jlabel_6;
     private JLabel jlabel_7;
 
-    private JMenuItem jmenuItem_displayUserInfor;
-    private JPanel jpanel_adminTool_displayUserInfor;
-    private JMenuItem jmenuItem_addUser;
-    private JMenuItem jmenuItem_displayDocument;
-    private JMenuItem jmenuItem_borrowDocument;
-    public JPanel jpanel_admin_contenPane;
+
     private JPanel contentPane_profileUser;
     private JTable jtable_soSachMuon;
 
     public DisplayUserInfo displayUserInfo;
     //private StudentManagementModel studentManagementModel;
-    private JTable studentTable;
+
 
 
 
@@ -96,8 +89,12 @@ public class LibraryManagementView extends JFrame {
     public Change changeModel;
     public String change;
 
-//    private JCheckBox jcheckbox_remember;
-//    private JMenuItem jmenu_item_dowload;
+    // các phần view
+    private HomeView homeView;
+    private ReturnView returnView;
+    private BorrowView borrowView;
+    private HelpView helpView;
+    public AdminView adminView;
 
     LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     public JTextField jtextField_searchUser_byID;
@@ -108,6 +105,13 @@ public class LibraryManagementView extends JFrame {
         this.adminManagementModel = new AdminManagementModel();
         //this.studentManagementModel = new StudentManagementModel();
         this.displayUserInfo = new DisplayUserInfo();
+
+        this.homeView = new HomeView(this);
+        this.returnView = new ReturnView(this);
+        this.borrowView = new BorrowView(this);
+        this.helpView = new HelpView(this);
+        this.adminView = new AdminView(this);
+
 
         this.init();
         this.setVisible(true);
@@ -323,121 +327,22 @@ public class LibraryManagementView extends JFrame {
         return panel_word;
     }
     public void selectHome() {
-        // Xóa hết các phần tử trên contentPane
-        this.clearPanel();
-
-        // Đặt lại màu cho các mục trong jpanel_tool
-        this.setColorTool(this.change);
-
-        // Cập nhật trạng thái là "Home"
-        this.change = "Home";
-        this.jmenu_item_home.setForeground(new Color(64, 0, 128));
-        this.jpanel_home.setBackground(new Color(154,205,50));
-
-        // Thêm lại các thành phần ban đầu vào contentPane
-        this.jpanel_sign_in.add(this.jlabel_2);
-        this.jpanel_sign_in.add(this.jpanel_sign_in_click);
-        this.jpanel_search_befor.add(this.jpanel_search_tool, BorderLayout.CENTER);
-        this.jpanel_search_befor.add(this.jlabel_1, BorderLayout.NORTH);
-        // this.libraryManagementView.jpanel_search_tool.add(this.libraryManagementView.jlabel_2);
-        this.contentPane.add(this.jpanel_search_befor, BorderLayout.NORTH);
-
-        JScrollPane scrollPane = new JScrollPane(this.jpanel_center);  // Tạo lại JScrollPane
-        this.contentPane.add(scrollPane, BorderLayout.CENTER);
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
+        homeView.selectHome();
     }
 
     public void selectReturn() {
-        clearPanel();
-        this.setColorTool(this.change);
-        this.change = "Return";
-        this.jmenu_item_returnBooks.setForeground(new Color(64, 0, 128));
-        this.jpanel_returnBooks.setBackground(new Color(154,205,50));
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
+        returnView.selectReturn();
     }
 
     public void selectBorrow() {
-        this.clearPanel();
-        this.setColorTool(this.change);
-        this.change = "Borrow";
-        this.jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
-        this.jpanel_borrowBooks.setBackground(new Color(154,205,50));
-
-        // Tạo một JButton mới
-        JButton gameButton = new JButton("Start Game");
-        gameButton.setFont(new Font("Segoe UI", Font.BOLD, 30));
-        gameButton.setBackground(new Color(0, 128, 64));
-        gameButton.setForeground(Color.GREEN);
-
-        // Thêm JButton vào giữa panel
-        this.contentPane.add(gameButton, BorderLayout.CENTER);
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
+        borrowView.selectBorrow();
     }
 
     public void selectHelp() {
-        clearPanel();
-        this.setColorTool(this.change);
-        this.change = "Help";
-        this.jmenu_item_help.setForeground(new Color(64, 0, 128));
-        this.jpanel_help.setBackground(new Color(154,205,50));
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
+        helpView.selectHelp();
     }
 
-    public void dangNhap(){
 
-
-        this.jmenu_item_DangNhap = new JMenuItem("Đăng nhập");
-        this.jmenu_item_DangNhap.setFont(new Font("Tahoma", Font.BOLD, 40));
-        this.jmenu_item_DangNhap.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_DangNhap.addActionListener(this.libraryManagementController);
-
-
-        this.jpanel_click_DangNhap = new JPanel(new BorderLayout());
-        this.jpanel_click_DangNhap.setBackground(new Color(75,0,130));
-        //jpanel_click_DangNhap.add(jLabel_checkDangNhap, BorderLayout.NORTH);
-        this.jpanel_click_DangNhap.add(this.jmenu_item_DangNhap, BorderLayout.CENTER);
-
-        this.jpanel_DangNhap = new JPanel(new BorderLayout());
-        this.jpanel_DangNhap.setBackground(new Color(154,205,50));
-        this.jpanel_DangNhap.add(this.jpanel_click_DangNhap, BorderLayout.NORTH);
-
-        this.jlabel_4 = new JLabel("       ");
-        this.jlabel_4.setFont(new Font("Tahoma", Font.BOLD, 80));
-
-        this.jlabel_5 = new JLabel("       ");
-        this.jlabel_5.setFont(new Font("Tahoma", Font.BOLD, 80));
-
-        this.jlabel_6 = new JLabel("       ");
-        this.jlabel_6.setFont(new Font("Tahoma", Font.BOLD, 80));
-
-        this.jlabel_7 = new JLabel("        ");
-        this.jlabel_7.setFont(new Font("Tahoma", Font.BOLD, 80));
-
-
-        addHoverEffect(jmenu_item_DangNhap);
-
-        this.contentPane.add(jlabel_7, BorderLayout.NORTH);
-        this.contentPane.add(jlabel_6, BorderLayout.EAST);
-        this.contentPane.add(jlabel_5, BorderLayout.WEST);
-        this.contentPane.add(jlabel_4, BorderLayout.SOUTH);
-        this.contentPane.add(jpanel_DangNhap, BorderLayout.CENTER);
-    }
 
 //    public boolean checkDangNhap() {
 //        String tenAdmin = this.jtextField_tenDangNhap.getText();
@@ -454,94 +359,11 @@ public class LibraryManagementView extends JFrame {
 //        return false; // Login failed
 //    }
     public void selectAdmin() {
-        clearPanel();
-        this.setColorTool(this.change);
-        this.change = "Admin";
-        this.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
-        this.jpanel_Admin.setBackground(new Color(154,205,50));
-
-        dangNhap();
-
-        // Cập nhật lại giao diện
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
+        adminView.selectAdmin();
     }
 
     public void adminTool(){
-        clearPanel();
-
-        this.setColorTool(this.change);
-        this.change = "Admin";
-        this.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
-        this.jpanel_Admin.setBackground(new Color(154,205,50));
-
-        jpanel_adminTool_displayUserInfor = new JPanel(new FlowLayout());
-        jpanel_adminTool_displayUserInfor.setBackground(new Color(250,128,114));
-        jmenuItem_displayUserInfor = new JMenuItem("UserInfor");
-        jmenuItem_displayUserInfor.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_displayUserInfor.setIcon(new ImageIcon("src\\view\\image\\user.png"));
-        jmenuItem_displayUserInfor.addActionListener(libraryManagementController);
-        jpanel_adminTool_displayUserInfor.add(jmenuItem_displayUserInfor);
-
-        //Display Document  displayDocument
-        JPanel jpanel_adminTool_displayDocument = new JPanel(new FlowLayout());
-        jpanel_adminTool_displayDocument.setBackground(new Color(173,216,230));
-        jmenuItem_displayDocument = new JMenuItem("Document");
-        jmenuItem_displayDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_displayDocument.setIcon(new ImageIcon("src\\view\\image\\document.png"));
-        jmenuItem_displayDocument.addActionListener(libraryManagementController);
-        jpanel_adminTool_displayDocument.add(jmenuItem_displayDocument);
-
-        // Add User  addUser
-        JPanel jpanel_adminTool_addUser = new JPanel(new FlowLayout());
-        jpanel_adminTool_addUser.setBackground(new Color(144,238,144));
-        jmenuItem_addUser = new JMenuItem("Edit User");
-        jmenuItem_addUser.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_addUser.setIcon(new ImageIcon("src\\view\\image\\editUser.png"));
-        jmenuItem_addUser.addActionListener(libraryManagementController);
-        jpanel_adminTool_addUser.add(jmenuItem_addUser);
-
-        //Borrow Document  borrowDocument
-        JPanel jpanel_adminTool_borrowDocument = new JPanel(new FlowLayout());
-        jpanel_adminTool_borrowDocument.setBackground(new Color(192,192,192));
-        jmenuItem_borrowDocument = new JMenuItem("Edit Document");
-        jmenuItem_borrowDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_borrowDocument.setIcon(new ImageIcon("src\\view\\image\\editDocument.png"));
-        jmenuItem_borrowDocument.addActionListener(libraryManagementController);
-        jpanel_adminTool_borrowDocument.add(jmenuItem_borrowDocument);
-
-        //Remove Document removeDocument
-//        JPanel jpanel_adminTool_removeDocument = new JPanel(new FlowLayout());
-//        jpanel_adminTool_removeDocument.setBackground(new Color(192,192,192));
-//        JMenuItem jmenuItem_removeDocument = new JMenuItem("Add User");
-//        jmenuItem_removeDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-//        jpanel_adminTool_removeDocument.add(jmenuItem_removeDocument);
-
-        addHoverEffect(jmenuItem_displayUserInfor);
-        addHoverEffect(jmenuItem_addUser);
-        addHoverEffect(jmenuItem_displayDocument);
-        addHoverEffect(jmenuItem_borrowDocument);
-
-        JPanel jpanel_adminTool = new JPanel(new GridLayout(1, 4, 10, 10));
-        jpanel_adminTool.setBackground(new Color(208, 255, 208));
-
-        jpanel_adminTool.add(jpanel_adminTool_displayUserInfor);
-        jpanel_adminTool.add(jpanel_adminTool_displayDocument);
-        jpanel_adminTool.add(jpanel_adminTool_addUser);
-        jpanel_adminTool.add(jpanel_adminTool_borrowDocument);
-        //  jpanel_adminTool.add(jpanel_adminTool_removeDocument);
-
-        jpanel_admin_contenPane = new JPanel(new BorderLayout());
-        jpanel_admin_contenPane.setBackground(new Color(208, 255, 208));
-
-        this.contentPane.add(jpanel_adminTool, BorderLayout.NORTH);
-        this.contentPane.add(jpanel_admin_contenPane, BorderLayout.CENTER);
-
-        this.contentPane.revalidate();
-        this.contentPane.repaint();
-
-
+        adminView.adminTool();
     }
 
     public void addHoverEffect(JMenuItem menuItem) {
@@ -561,206 +383,7 @@ public class LibraryManagementView extends JFrame {
     }
 
     public void displayUserInfo() {
-//        setColorTool(changeModel.getChange_admin());
-//       this.jpanel_adminTool_displayUserInfor.setBackground(new Color(205,92,92));
-
-        if(!this.changeModel.getChange_admin().equals("UserInfor")) {
-            this.changeModel.setChange_admin("UserInfor");
-            // Clear all components from the panel
-            jpanel_admin_contenPane.removeAll();
-            if(studentTable == null){
-                  this.displayUserInfo.createUserInforTable();
-                  this.studentTable = this.displayUserInfo.getStudentTable();
-
-            }
-
-            JScrollPane scrollPane = new JScrollPane(studentTable);
-            jpanel_admin_contenPane.setLayout(new BorderLayout());
-            jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
-            searchUser();
-
-            jpanel_admin_contenPane.revalidate();
-            jpanel_admin_contenPane.repaint();
-        }
-
-    }
-
-    public void editUser() {
-//        setColorTool(changeModel.getChange_admin());
-//       this.jpanel_adminTool_displayUserInfor.setBackground(new Color(205,92,92));
-
-        if(!this.changeModel.getChange_admin().equals("Edit User")) {
-            this.changeModel.setChange_admin("Edit User");
-            // Clear all components from the panel
-            jpanel_admin_contenPane.removeAll();
-            if(studentTable == null){
-                this.displayUserInfo.createUserInforTable();
-                this.studentTable = this.displayUserInfo.getStudentTable();
-
-            }
-
-            JPanel jpanel_adminTool_addUser = new JPanel(new FlowLayout());
-            jpanel_adminTool_addUser.setBackground(new Color(124,252,0));
-            JMenuItem jmenuItem_addUser = new JMenuItem("Add");
-            jmenuItem_addUser.setFont(new Font("Tahoma", Font.BOLD, 20));
-            jpanel_adminTool_addUser.add(jmenuItem_addUser);
-
-            JPanel jpanel_adminTool_removeUser = new JPanel(new FlowLayout());
-            jpanel_adminTool_removeUser.setBackground(new Color(255,99,71));
-            JMenuItem jmenuItem_removeUser = new JMenuItem("Delete");
-            jmenuItem_removeUser.setFont(new Font("Tahoma", Font.BOLD, 20));
-            jpanel_adminTool_removeUser.add(jmenuItem_removeUser);
-
-            JPanel jpanel_adminTool_updateUser = new JPanel(new FlowLayout());
-            jpanel_adminTool_updateUser.setBackground(new Color(222,184,135));
-            JMenuItem jmenuItem_updateUser = new JMenuItem("Update");
-            jmenuItem_updateUser.setFont(new Font("Tahoma", Font.BOLD, 20));
-            jpanel_adminTool_updateUser.add(jmenuItem_updateUser);
-
-            JLabel jlabel_kt = new JLabel("        ");
-            jlabel_kt.setFont(new Font("Tahoma", Font.BOLD, 14));
-
-            JLabel jlabel_kt2 = new JLabel("        ");
-            jlabel_kt2.setFont(new Font("Tahoma", Font.BOLD, 14));
-
-            JLabel jlabel_kt3 = new JLabel("        ");
-            jlabel_kt3.setFont(new Font("Tahoma", Font.BOLD, 14));
-
-            JLabel jlabel_kt4 = new JLabel("        ");
-            jlabel_kt4.setFont(new Font("Tahoma", Font.BOLD, 14));
-
-
-
-            JPanel jpanel_adminTool_editUser = new JPanel(new GridLayout(1,7, 5, 5));
-            jpanel_adminTool_editUser.setBackground(new Color(208, 255, 208));
-            jpanel_adminTool_editUser.add(jpanel_adminTool_addUser);
-            jpanel_adminTool_editUser.add(jpanel_adminTool_removeUser);
-            jpanel_adminTool_editUser.add(jpanel_adminTool_updateUser);
-            jpanel_adminTool_editUser.add(jlabel_kt);
-            jpanel_adminTool_editUser.add(jlabel_kt2);
-            jpanel_adminTool_editUser.add(jlabel_kt3);
-            jpanel_adminTool_editUser.add(jlabel_kt4);
-
-
-            JScrollPane scrollPane = new JScrollPane(studentTable);
-            jpanel_admin_contenPane.setLayout(new BorderLayout());
-            jpanel_admin_contenPane.add(jpanel_adminTool_editUser, BorderLayout.NORTH);
-            jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
-            searchUser();
-
-            jpanel_admin_contenPane.revalidate();
-            jpanel_admin_contenPane.repaint();
-        }
-
-    }
-
-    public void searchUser() {
-        JPanel jpanel_searchUser = new JPanel(new BorderLayout());
-        jpanel_searchUser.setBackground(new Color(208, 255, 208));
-        JPanel jpanel_searchUserInfor = new JPanel(new GridLayout(1, 4, 10, 10));
-        jpanel_searchUserInfor.setBackground(new Color(208, 255, 208));
-
-        jtextField_searchUser_byID = new JTextField();
-        jtextField_searchUser_byID.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jpanel_searchUserInfor.add(jtextField_searchUser_byID);
-
-        JLabel jlabel_searchUser = new JLabel("NHập ID");
-        jlabel_searchUser.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jpanel_searchUserInfor.add(jlabel_searchUser);
-
-        JPanel jpanel_clickSearchUser = new JPanel(new BorderLayout());
-        jpanel_clickSearchUser.setBackground(new Color(0,191,255));
-        JMenuItem jmenu_item_search_user = new JMenuItem("Search User");
-        jmenu_item_search_user.setFont(new Font("Tahoma", Font.BOLD, 30));
-        jmenu_item_search_user.setIcon(new ImageIcon("src\\view\\image\\search_user.png"));
-        addHoverEffect(jmenu_item_search_user);
-        jmenu_item_search_user.addActionListener(libraryManagementController);
-        jpanel_clickSearchUser.add(jmenu_item_search_user, BorderLayout.CENTER);
-        jpanel_searchUserInfor.add(jpanel_clickSearchUser);
-
-        JLabel jlabel_khtr = new JLabel("");
-        jpanel_searchUserInfor.add(jlabel_khtr);
-
-        // chỉ là phần tạo khoang trắng
-        this.jlabel_3 = new JLabel(" ");
-        this.jlabel_3.setFont(new Font("Tahoma", Font.BOLD, 100));
-        this.jlabel_3.setBackground(new Color(0, 128, 64));
-
-
-        jpanel_searchUser.add(jpanel_searchUserInfor, BorderLayout.NORTH);
-        jpanel_searchUser.add(jlabel_3, BorderLayout.CENTER);
-
-        jpanel_admin_contenPane.add(jpanel_searchUser, BorderLayout.SOUTH);
-    }
-
-    public void profileuser(Student student) {
-
-            contentPane_profileUser = new JPanel();
-            contentPane_profileUser.setBackground(new Color(208, 255, 208));
-            contentPane_profileUser.setBorder(new EmptyBorder(5, 5, 5, 5));
-            contentPane_profileUser.setLayout(null); // Setting layout
-
-            JPanel jpanel_anh = new JPanel();
-            jpanel_anh.setBackground(new Color(192, 192, 192));
-            jpanel_anh.setBounds(42, 34, 248, 321);
-            contentPane_profileUser.add(jpanel_anh);
-
-            JLabel jlabel_profileUser_ten = new JLabel("Họ và tên: "+student.getFullName());
-            jlabel_profileUser_ten.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jlabel_profileUser_ten.setBounds(327, 38, 485, 53);
-            contentPane_profileUser.add(jlabel_profileUser_ten);
-
-            JLabel jlabel_profileUser_id = new JLabel("Mã thư viện: "+student.getLibraryId());
-            jlabel_profileUser_id.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jlabel_profileUser_id.setBounds(327, 101, 485, 53);
-            contentPane_profileUser.add(jlabel_profileUser_id);
-
-            JLabel jlabel_profileUser_sdt = new JLabel("Số điện thoại: "+student.getPhone());
-            jlabel_profileUser_sdt.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jlabel_profileUser_sdt.setBounds(327, 177, 524, 53);
-            contentPane_profileUser.add(jlabel_profileUser_sdt);
-
-            JLabel jlabel_profileUser_email = new JLabel("email: "+student.getEmail());
-            jlabel_profileUser_email.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jlabel_profileUser_email.setBounds(327, 252, 623, 53);
-            contentPane_profileUser.add(jlabel_profileUser_email);
-
-            JLabel jlabel_profileUser_soSachMuon = new JLabel("Danh sách đang mượn:");
-            jlabel_profileUser_soSachMuon.setFont(new Font("Tahoma", Font.BOLD, 30));
-            jlabel_profileUser_soSachMuon.setBounds(42, 386, 485, 53);
-            contentPane_profileUser.add(jlabel_profileUser_soSachMuon);
-
-            JPanel panel_1 = new JPanel();
-            panel_1.setBackground(new Color(169, 243, 196));
-            panel_1.setBounds(42, 449, 1176, 299);
-            contentPane_profileUser.add(panel_1);
-            panel_1.setLayout(new BorderLayout(0, 0));
-
-            jtable_soSachMuon = new JTable();
-            JScrollPane jscrollPane_soSachMuon = new JScrollPane(jtable_soSachMuon);
-            panel_1.add(jscrollPane_soSachMuon, BorderLayout.CENTER);
-
-            jpanel_admin_contenPane.add(contentPane_profileUser);
-            jpanel_admin_contenPane.revalidate();
-            jpanel_admin_contenPane.repaint();
-
-    }
-
-
-    public void clickSearchUser() {
-
-        Student student = this.displayUserInfo.kiemTraUserByID(jtextField_searchUser_byID.getText());
-        if(student != null) {
-            jpanel_admin_contenPane.removeAll();
-            profileuser(student);
-            jpanel_admin_contenPane.revalidate();
-            jpanel_admin_contenPane.repaint();
-        }else{
-            JOptionPane.showMessageDialog(
-                    null,
-                    "User with ID not found"
-            );
-        }
+       adminView.displayUserInfo();
     }
 
 
