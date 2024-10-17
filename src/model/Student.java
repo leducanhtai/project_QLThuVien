@@ -13,7 +13,7 @@ public class Student {
     private String password;
     private String email;
     private String phone;
-    private int soSachMuon;
+    private int numberOfBookBorrowed;
 
     public Student(String fullName,  String username, String password, String email, String phone) {
         this.fullName = fullName;
@@ -22,7 +22,7 @@ public class Student {
         this.email = email;
         this.phone = phone;
         this.libraryId = "";
-        this.soSachMuon = 0;
+        this.numberOfBookBorrowed = 0;
     }
 
     public Student(String fullName, String libraryId, String username, String password,
@@ -33,7 +33,7 @@ public class Student {
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.soSachMuon = soSachMuon;
+        this.numberOfBookBorrowed = soSachMuon;
     }
 
     public String getFullName() {
@@ -85,11 +85,11 @@ public class Student {
     }
 
     public int getSoSachMuon() {
-        return soSachMuon;
+        return numberOfBookBorrowed;
     }
 
     public void setSoSachMuon(int soSachMuon) {
-        this.soSachMuon = soSachMuon;
+        this.numberOfBookBorrowed = soSachMuon;
     }
 
 }
