@@ -5,6 +5,7 @@ import model.AdminManagementModel;
 import model.AdminModel;
 import model.Student;
 import model.StudentManagementModel;
+import view.LibraryManagementView;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class SignIn extends JFrame {
     private JTextField jtextField_user_name;
     private JPasswordField passwordField;
     private StudentManagementModel studentManagementModel;
+    //private LibraryManagementView libraryManagementView;
     public boolean check;
     public boolean getCheck() {
         return check;
@@ -29,7 +31,7 @@ public class SignIn extends JFrame {
         this.check = check;
     }
 
-    LibraryManagementController libraryManagementController = new LibraryManagementController(this);
+    //LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     /**
      * Launch the application.
      */
@@ -38,7 +40,7 @@ public class SignIn extends JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    SignIn frame = new SignIn();
+                    SignIn frame = new SignIn(new LibraryManagementView());
                     frame.setVisible(true);
                 } catch (Exception e) {
                     // TODO: handle exception
@@ -53,7 +55,7 @@ public class SignIn extends JFrame {
     /**
      * Create the frame.
      */
-    public SignIn() {
+    public SignIn(LibraryManagementView libraryManagementView) {
         this.studentManagementModel = new StudentManagementModel();
         this.check = false;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +100,7 @@ public class SignIn extends JFrame {
         jmenuItem_signIn.setBackground(new Color(0, 255, 64));
         jmenuItem_signIn.setForeground(new Color(165, 209, 209));
         jmenuItem_signIn.setFont(new Font("Segoe UI", Font.BOLD, 30));
-        jmenuItem_signIn.addActionListener(libraryManagementController);
+        jmenuItem_signIn.addActionListener(libraryManagementView.libraryManagementController);
         jmenuItem_signIn.addActionListener(e -> signInAction());
         jpanel_signIn.add(jmenuItem_signIn, BorderLayout.CENTER);
 

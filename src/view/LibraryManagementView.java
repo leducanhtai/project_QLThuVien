@@ -8,6 +8,7 @@ import model.AdminManagementModel;
 import model.AdminModel;
 import model.Student;
 import model.StudentManagementModel;
+import view.sign_in_up.SignIn;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -95,8 +96,11 @@ public class LibraryManagementView extends JFrame {
     private BorrowView borrowView;
     private HelpView helpView;
     public AdminView adminView;
+    public SignIn signIn;
 
-    LibraryManagementController libraryManagementController = new LibraryManagementController(this);
+
+
+    public LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     public JTextField jtextField_searchUser_byID;
 
     public LibraryManagementView() {
@@ -111,6 +115,7 @@ public class LibraryManagementView extends JFrame {
         this.borrowView = new BorrowView(this);
         this.helpView = new HelpView(this);
         this.adminView = new AdminView(this);
+        this.signIn = new SignIn(this);
 
 
         this.init();
