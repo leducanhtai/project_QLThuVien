@@ -14,9 +14,9 @@ public class EditUser {
             this.adminView.view.changeModel.setChange_admin("Borrowing User");
             // Clear all components from the panel
             adminView.jpanel_admin_contenPane.removeAll();
-            if(adminView.studentTable == null){
-                this.adminView.view.displayUserInfo.createUserInforTable();
-                this.adminView.studentTable = this.adminView.view.displayUserInfo.getStudentTable();
+            if(adminView.studentPanel == null){
+                this.adminView.view.displayUserInforView.createUserInforTable();
+                this.adminView.studentPanel = this.adminView.view.displayUserInforView.getStudentPanel();
 
             }
 
@@ -76,7 +76,9 @@ public class EditUser {
             jpanel_adminTool_editUser_full.add(jlabel_kt6, BorderLayout.NORTH);
 
 
-            JScrollPane scrollPane = new JScrollPane(adminView.studentTable);
+            //JScrollPane scrollPane = new JScrollPane(adminView.studentPanel);
+            MinimalScrollPane.createMinimalScrollPane(adminView.studentPanel);
+            JScrollPane scrollPane = MinimalScrollPane.createMinimalScrollPane(adminView.studentPanel);
             adminView.jpanel_admin_contenPane.setLayout(new BorderLayout());
             //adminView.jpanel_admin_contenPane.add(jpanel_adminTool_editUser, BorderLayout.NORTH);
             adminView.searchUserView.jpanel_edit_user.add(jpanel_adminTool_editUser_full, BorderLayout.CENTER);

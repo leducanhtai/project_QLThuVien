@@ -10,6 +10,7 @@ public class Users extends Date {
     private String phone;
 
     public Users(int id, String username, String password, String fullName, int day, int month, int year, String sex, String email, String phone) {
+        super();
         this.id = id;
         this.username = username;
         this.password = password;

@@ -16,7 +16,7 @@ public class AdminView {
     private JButton jbutton_displayDocument;
     private JButton jbutton_borrowing_user;
     public JPanel jpanel_admin_contenPane;
-    public JTable studentTable;
+    public JPanel studentPanel;
     public JTextField jtextField_searchUser_byID;
 
     //các chức năng trong admin
@@ -160,13 +160,15 @@ public class AdminView {
             this.view.changeModel.setChange_admin("UserInfor");
             // Clear all components from the panel
             jpanel_admin_contenPane.removeAll();
-            if(studentTable == null){
-                this.view.displayUserInfo.createUserInforTable();
-                this.studentTable = this.view.displayUserInfo.getStudentTable();
+            if(studentPanel == null){
+                this.view.displayUserInforView.createUserInforTable();
+                this.studentPanel = this.view.displayUserInforView.getStudentPanel();
 
             }
 
-            JScrollPane scrollPane = new JScrollPane(studentTable);
+            //JScrollPane scrollPane = new JScrollPane(studentPanel);
+            MinimalScrollPane.createMinimalScrollPane(studentPanel);
+            JScrollPane scrollPane = MinimalScrollPane.createMinimalScrollPane(studentPanel);
             jpanel_admin_contenPane.setLayout(new BorderLayout());
             jpanel_admin_contenPane.add(scrollPane, BorderLayout.CENTER);
             searchUser();
@@ -191,7 +193,7 @@ public class AdminView {
 
     public void clickSearchUser() {
 
-        Student student = this.view.displayUserInfo.kiemTraUserByID(jtextField_searchUser_byID.getText());
+        Student student = this.view.displayUserInforView.kiemTraUserByID(jtextField_searchUser_byID.getText());
         if(student != null) {
             jpanel_admin_contenPane.removeAll();
             profileuser(student);

@@ -1,7 +1,7 @@
 package view;
 // check git.llll
 import adminFunction.Change;
-import adminFunction.DisplayUserInfo;
+//import adminFunction.DisplayUserInfo;
 import basicFunction.*;
 import controller.LibraryManagementController;
 import model.AdminManagementModel;
@@ -21,6 +21,7 @@ import java.util.List;
 public class LibraryManagementView extends JFrame {
 
     public JPanel contentPane;
+    public DisplayUserInforView displayUserInforView;
     private JPanel jpanel_tool;
     private JPanel jpanel_search;
     public JPanel jpanel_search_tool;
@@ -84,7 +85,7 @@ public class LibraryManagementView extends JFrame {
     private JPanel contentPane_profileUser;
     private JTable jtable_soSachMuon;
 
-    public DisplayUserInfo displayUserInfo;
+    //public DisplayUserInfo displayUserInfo;
     //private StudentManagementModel studentManagementModel;
 
 
@@ -112,7 +113,7 @@ public class LibraryManagementView extends JFrame {
         this.changeModel = new Change();
         this.adminManagementModel = new AdminManagementModel();
         //this.studentManagementModel = new StudentManagementModel();
-        this.displayUserInfo = new DisplayUserInfo();
+        this.displayUserInforView = new DisplayUserInforView();
 
         this.homeView = new HomeView(this);
         this.returnView = new ReturnView(this);
