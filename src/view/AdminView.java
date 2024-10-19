@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
 public class AdminView {
     public LibraryManagementView view;
     private JPanel panel_main;
-    private JMenuItem jmenuItem_displayUserInfor;
+    private JButton jbutton_displayUserInfor;
     private JPanel jpanel_adminTool_displayUserInfor;
-    private JMenuItem jmenuItem_addUser;
-    private JMenuItem jmenuItem_displayDocument;
-    private JMenuItem jmenuItem_borrowDocument;
+    private JButton jbutton_borrowing;
+    private JButton jbutton_displayDocument;
+    private JButton jbutton_borrowing_user;
     public JPanel jpanel_admin_contenPane;
     public JTable studentTable;
     public JTextField jtextField_searchUser_byID;
@@ -36,8 +36,8 @@ public class AdminView {
         view.clearPanel();
         this.view.setColorTool(this.view.change);
         this.view.change = "Admin";
-        this.view.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
-        this.view.jpanel_Admin.setBackground(new Color(154,205,50));
+        this.view.jbutton_Admin.setForeground(new Color(64, 0, 128));
+        this.view.jbutton_Admin.setBackground(new Color(0,191,255));
 
         dangNhap();
 
@@ -47,21 +47,25 @@ public class AdminView {
 
     }
     public void dangNhap(){
-        panel_main.setBackground(new Color(213, 255, 213));
+        panel_main.setBackground(new Color(224,255,255));
         panel_main.setLayout(null);
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(0, 255, 0));
-        panel.setBounds(339, 247, 278, 89);
-        panel_main.add(panel);
+
+
         panel.setLayout(new BorderLayout(0, 0));
 
-        JMenuItem mntmNewMenuItem = new JMenuItem("Đăng nhập");
+        JButton mntmNewMenuItem = new OvalButton("Đăng nhập");
         mntmNewMenuItem.setFont(new Font("Segoe UI", Font.BOLD, 30));
+        mntmNewMenuItem.setBackground(new Color(0, 255, 0));
+        mntmNewMenuItem.setBounds(339, 247, 278, 89);
         mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\GitHub\\project_QLThuVien\\src\\view\\image\\login.png"));
         mntmNewMenuItem.setBackground(new Color(0, 255, 0));
+        view.addHoverEffect(mntmNewMenuItem);
         mntmNewMenuItem.addActionListener(view.libraryManagementController);
-        panel.add(mntmNewMenuItem);
+        panel_main.add(mntmNewMenuItem);
+        //panel.add(mntmNewMenuItem);
 
         JLabel lblNewLabel = new JLabel("Hãy đăng nhập với tài khoản của admin để sử dụng chức năng này");
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -69,7 +73,7 @@ public class AdminView {
         panel_main.add(lblNewLabel);
 
 
-        view.addHoverEffect(mntmNewMenuItem);
+       //view.addHoverEffect(mntmNewMenuItem);
         this.view.contentPane.add(panel_main, BorderLayout.CENTER);
     }
 
@@ -78,43 +82,43 @@ public class AdminView {
 
         this.view.setColorTool(this.view.change);
         this.view.change = "Admin";
-        this.view.jmenu_item_Admin.setForeground(new Color(64, 0, 128));
-        this.view.jpanel_Admin.setBackground(new Color(154,205,50));
+        this.view.jbutton_Admin.setForeground(new Color(64, 0, 128));
+        this.view.jbutton_Admin.setBackground(new Color(0,191,255));
 
-        jpanel_adminTool_displayUserInfor = new JPanel(new FlowLayout());
-        jpanel_adminTool_displayUserInfor.setBackground(new Color(250,128,114));
-        jmenuItem_displayUserInfor = new JMenuItem("UserInfor");
-        jmenuItem_displayUserInfor.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_displayUserInfor.setIcon(new ImageIcon("src\\view\\image\\user.png"));
-        jmenuItem_displayUserInfor.addActionListener(view.libraryManagementController);
-        jpanel_adminTool_displayUserInfor.add(jmenuItem_displayUserInfor);
+        jbutton_displayUserInfor = new JButton("UserInfor");
+        jbutton_displayUserInfor.setFont(new Font("Tahoma", Font.BOLD, 14));
+        jbutton_displayUserInfor.setForeground(new Color(255, 255, 255));
+        jbutton_displayUserInfor.setBackground(new Color(64, 0, 128));
+        jbutton_displayUserInfor.setIcon(new ImageIcon("src\\view\\image\\user2.png"));
+        jbutton_displayUserInfor.addActionListener(view.libraryManagementController);
+
 
         //Display Document  displayDocument
-        JPanel jpanel_adminTool_displayDocument = new JPanel(new FlowLayout());
-        jpanel_adminTool_displayDocument.setBackground(new Color(173,216,230));
-        jmenuItem_displayDocument = new JMenuItem("Document");
-        jmenuItem_displayDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_displayDocument.setIcon(new ImageIcon("src\\view\\image\\document.png"));
-        jmenuItem_displayDocument.addActionListener(view.libraryManagementController);
-        jpanel_adminTool_displayDocument.add(jmenuItem_displayDocument);
+        jbutton_displayDocument = new JButton("Document");
+        jbutton_displayDocument.setFont(new Font("Tahoma", Font.BOLD, 14));
+        jbutton_displayDocument.setForeground(new Color(255, 255, 255));
+        jbutton_displayDocument.setBackground(new Color(64, 0, 128));
+        jbutton_displayDocument.setIcon(new ImageIcon("src\\view\\image\\document2.png"));
+        jbutton_displayDocument.addActionListener(view.libraryManagementController);
 
-        // Add User  addUser
-        JPanel jpanel_adminTool_addUser = new JPanel(new FlowLayout());
-        jpanel_adminTool_addUser.setBackground(new Color(144,238,144));
-        jmenuItem_addUser = new JMenuItem("Edit User");
-        jmenuItem_addUser.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_addUser.setIcon(new ImageIcon("src\\view\\image\\editUser.png"));
-        jmenuItem_addUser.addActionListener(view.libraryManagementController);
-        jpanel_adminTool_addUser.add(jmenuItem_addUser);
 
-        //Borrow Document  borrowDocument
-        JPanel jpanel_adminTool_borrowDocument = new JPanel(new FlowLayout());
-        jpanel_adminTool_borrowDocument.setBackground(new Color(192,192,192));
-        jmenuItem_borrowDocument = new JMenuItem("Edit Document");
-        jmenuItem_borrowDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
-        jmenuItem_borrowDocument.setIcon(new ImageIcon("src\\view\\image\\editDocument.png"));
-        jmenuItem_borrowDocument.addActionListener(view.libraryManagementController);
-        jpanel_adminTool_borrowDocument.add(jmenuItem_borrowDocument);
+        // Danh sách sách đang được mượn
+        jbutton_borrowing = new JButton("Borrowing");
+        jbutton_borrowing.setFont(new Font("Tahoma", Font.BOLD, 14));
+        jbutton_borrowing.setForeground(new Color(255, 255, 255));
+        jbutton_borrowing.setBackground(new Color(64, 0, 128));
+        jbutton_borrowing.setIcon(new ImageIcon("src\\view\\image\\borrowing.png"));
+        jbutton_borrowing.addActionListener(view.libraryManagementController);
+
+
+        // Danh sách người mượn
+        jbutton_borrowing_user = new JButton("Borrowing User");
+        jbutton_borrowing_user.setFont(new Font("Tahoma", Font.BOLD, 14));
+        jbutton_borrowing_user.setForeground(new Color(255, 255, 255));
+        jbutton_borrowing_user.setBackground(new Color(64, 0, 128));
+        jbutton_borrowing_user.setIcon(new ImageIcon("src\\view\\image\\borrowinguser.png"));
+        jbutton_borrowing_user.addActionListener(view.libraryManagementController);
+
 
         //Remove Document removeDocument
 //        JPanel jpanel_adminTool_removeDocument = new JPanel(new FlowLayout());
@@ -123,22 +127,22 @@ public class AdminView {
 //        jmenuItem_removeDocument.setFont(new Font("Tahoma", Font.BOLD, 20));
 //        jpanel_adminTool_removeDocument.add(jmenuItem_removeDocument);
 
-        view.addHoverEffect(jmenuItem_displayUserInfor);
-        view.addHoverEffect(jmenuItem_addUser);
-        view.addHoverEffect(jmenuItem_displayDocument);
-        view.addHoverEffect(jmenuItem_borrowDocument);
+//        view.addHoverEffect(jmenuItem_displayUserInfor);
+//        view.addHoverEffect(jmenuItem_addUser);
+//        view.addHoverEffect(jmenuItem_displayDocument);
+//        view.addHoverEffect(jmenuItem_borrowDocument);
 
         JPanel jpanel_adminTool = new JPanel(new GridLayout(1, 4, 10, 10));
-        jpanel_adminTool.setBackground(new Color(208, 255, 208));
+        jpanel_adminTool.setBackground(new Color(25,25,112));
 
-        jpanel_adminTool.add(jpanel_adminTool_displayUserInfor);
-        jpanel_adminTool.add(jpanel_adminTool_displayDocument);
-        jpanel_adminTool.add(jpanel_adminTool_addUser);
-        jpanel_adminTool.add(jpanel_adminTool_borrowDocument);
+        jpanel_adminTool.add(jbutton_displayUserInfor);
+        jpanel_adminTool.add(jbutton_displayDocument);
+        jpanel_adminTool.add(jbutton_borrowing);
+        jpanel_adminTool.add(jbutton_borrowing_user);
         //  jpanel_adminTool.add(jpanel_adminTool_removeDocument);
 
         jpanel_admin_contenPane = new JPanel(new BorderLayout());
-        jpanel_admin_contenPane.setBackground(new Color(208, 255, 208));
+        jpanel_admin_contenPane.setBackground(new Color(224,255,255));
 
         this.view.contentPane.add(jpanel_adminTool, BorderLayout.NORTH);
         this.view.contentPane.add(jpanel_admin_contenPane, BorderLayout.CENTER);
@@ -150,6 +154,7 @@ public class AdminView {
     public void displayUserInfo() {
 //        setColorTool(changeModel.getChange_admin());
 //       this.jpanel_adminTool_displayUserInfor.setBackground(new Color(205,92,92));
+        searchUserView.jpanel_edit_user.removeAll();
 
         if(!this.view.changeModel.getChange_admin().equals("UserInfor")) {
             this.view.changeModel.setChange_admin("UserInfor");

@@ -8,7 +8,7 @@ import model.AdminManagementModel;
 import model.AdminModel;
 import model.Student;
 import model.StudentManagementModel;
-import view.sign_in_up.SignIn;
+
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,32 +24,34 @@ public class LibraryManagementView extends JFrame {
     private JPanel jpanel_tool;
     private JPanel jpanel_search;
     public JPanel jpanel_search_tool;
-    public JPanel jpanel_search_befor;
+    public JPanel jpanel_befor;
     public JPanel jpanel_center;
 
+    public JPanel jpanel_befor_tool;
     public JPanel jpanel_sign_in;
-    public JPanel jpanel_sign_in_click;
-    public JMenuItem jMenuItem_signIn;
+    public JButton jbutton_signIn;
+    public JButton jbutton_seting;
 
     private JTextField jtextField_search;
-    private JMenuItem jmenu_item_search;
+    private JButton jbutton_search;
 
-    public JMenuItem jmenu_item_home;
-    private JMenuItem jmenu_item_exit;
-    public JMenuItem jmenu_item_borrowBooks;
-    public JMenuItem jmenu_item_returnBooks;
-    public JMenuItem jmenu_item_Admin;
-    public JMenuItem jmenu_item_help;
+    public JButton jbutton_home;
+    private JButton jbutton_exit;
+    public JButton jbutton_borrowBooks;
+    public JButton jbutton_returnBooks;
+    public JButton jbutton_Admin;
+    public JButton jbutton_help;
+    public JPanel jpanel_title;
 
-    public JPanel jpanel_home;
-    private JPanel jpanel_exit;
-    public JPanel jpanel_borrowBooks;
-    public JPanel jpanel_returnBooks;
-    public JPanel jpanel_Admin;
-    public JPanel jpanel_help;
+//    public JPanel jpanel_home;
+//    private JPanel jpanel_exit;
+//    public JPanel jpanel_borrowBooks;
+//    public JPanel jpanel_returnBooks;
+//    public JPanel jpanel_Admin;
+//    public JPanel jpanel_help;
 
     private JButton jbutton_start_game;
-    private JButton jbutton_home;
+    //private JButton jbutton_home;
 
     public JLabel jlabel_1;
     public JLabel jlabel_2;
@@ -59,6 +61,8 @@ public class LibraryManagementView extends JFrame {
     public JLabel jlabel_9;
     public JLabel jlabel_10;
     public JLabel jlabel_11;
+
+    public JLabel jlabel_12;
 
     // phần đăng nhập cho admin
     private JTextField jtextField_tenDangNhap;
@@ -96,12 +100,12 @@ public class LibraryManagementView extends JFrame {
     private BorrowView borrowView;
     private HelpView helpView;
     public AdminView adminView;
-    public SignIn signIn;
-
 
 
     public LibraryManagementController libraryManagementController = new LibraryManagementController(this);
     public JTextField jtextField_searchUser_byID;
+    private JButton jbutton_filter;
+
 
     public LibraryManagementView() {
         this.change = "";
@@ -115,7 +119,7 @@ public class LibraryManagementView extends JFrame {
         this.borrowView = new BorrowView(this);
         this.helpView = new HelpView(this);
         this.adminView = new AdminView(this);
-        this.signIn = new SignIn(this);
+
 
 
         this.init();
@@ -124,153 +128,213 @@ public class LibraryManagementView extends JFrame {
     }
     public void init() {
         this.setTitle("Dictinary");
-        this.setSize(1200, 800);
+        this.setSize(1300, 900);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.jmenu_item_home = new JMenuItem("Home");
-        this.jmenu_item_home.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_home = new JButton("Home");
+        this.jbutton_home.setFont(new Font("Tahoma", Font.BOLD, 14));
         //this.jmenu_item_home.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_home.setForeground(new Color(64, 0, 128));
-        this.jmenu_item_home.setIcon(new ImageIcon("src\\view\\image\\home.png"));
-        this.jmenu_item_home.addActionListener(libraryManagementController);
-        this.jpanel_home = new JPanel(new BorderLayout());
-        this.jpanel_home.setBackground(new Color(154,205,50));
-        this.jpanel_home.add(this.jmenu_item_home, BorderLayout.CENTER);
+        this.jbutton_home.setForeground(new Color(64, 0, 128));
+        jbutton_home.setBackground(new Color(0,191,255));
+        this.jbutton_home.setIcon(new ImageIcon("src\\view\\image\\home2.png"));
+        this.jbutton_home.addActionListener(libraryManagementController);
+//        this.jpanel_home = new JPanel(new BorderLayout());
+//        this.jpanel_home.setBackground(new Color(0,191,255));
+//        this.jpanel_home.add(this.jmenu_item_home, BorderLayout.CENTER);
 
-        this.jmenu_item_Admin = new JMenuItem("Admin");
-        this.jmenu_item_Admin.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_Admin.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_Admin.setIcon(new ImageIcon("src\\view\\image\\Admin.png"));
-        this.jmenu_item_Admin.addActionListener(libraryManagementController);
-        this.jpanel_Admin = new JPanel(new BorderLayout());
-        this.jpanel_Admin.setBackground(new Color(0, 128, 64));
-        this.jpanel_Admin.add(this.jmenu_item_Admin, BorderLayout.CENTER);
+        this.jbutton_Admin = new JButton("Admin");
+        this.jbutton_Admin.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_Admin.setForeground(new Color(255, 255, 255));
+        this.jbutton_Admin.setBackground(new Color(25,25,112));
+        this.jbutton_Admin.setIcon(new ImageIcon("src\\view\\image\\admin2.png"));
+        this.jbutton_Admin.addActionListener(libraryManagementController);
+//        this.jpanel_Admin = new JPanel(new BorderLayout());
+//        this.jpanel_Admin.setBackground(new Color(85, 117, 255));
+//        this.jpanel_Admin.add(this.jmenu_item_Admin, BorderLayout.CENTER);
 
-        this.jmenu_item_borrowBooks = new JMenuItem("Borrow");
-        this.jmenu_item_borrowBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_borrowBooks.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_borrowBooks.setIcon(new ImageIcon("src\\view\\image\\borrow.png"));
-        this.jmenu_item_borrowBooks.addActionListener(libraryManagementController);
-        this.jpanel_borrowBooks = new JPanel(new BorderLayout());
-        this.jpanel_borrowBooks.setBackground(new Color(0, 128, 64));
-        this.jpanel_borrowBooks.add(this.jmenu_item_borrowBooks, BorderLayout.CENTER);
+        this.jbutton_borrowBooks = new JButton("Borrow");
+        this.jbutton_borrowBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_borrowBooks.setForeground(new Color(255, 255, 255));
+        this.jbutton_borrowBooks.setBackground(new Color(25,25,112));
+        this.jbutton_borrowBooks.setIcon(new ImageIcon("src\\view\\image\\borrow2.png"));
+        this.jbutton_borrowBooks.addActionListener(libraryManagementController);
+//        this.jpanel_borrowBooks = new JPanel(new BorderLayout());
+//        this.jpanel_borrowBooks.setBackground(new Color(85, 117, 255));
+//        this.jpanel_borrowBooks.add(this.jmenu_item_borrowBooks, BorderLayout.CENTER);
 
-        this.jmenu_item_returnBooks = new JMenuItem("Return");
-        this.jmenu_item_returnBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_returnBooks.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_returnBooks.setIcon(new ImageIcon("src\\view\\image\\return.png"));
-        this.jmenu_item_returnBooks.addActionListener(libraryManagementController);
-        this.jpanel_returnBooks = new JPanel(new BorderLayout());
-        this.jpanel_returnBooks.setBackground(new Color(0, 128, 64));
-        this.jpanel_returnBooks.add(this.jmenu_item_returnBooks, BorderLayout.CENTER);
+        this.jbutton_returnBooks = new JButton("Return");
+        this.jbutton_returnBooks.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_returnBooks.setForeground(new Color(255, 255, 255));
+        this.jbutton_returnBooks.setBackground(new Color(25,25,112));
+        this.jbutton_returnBooks.setIcon(new ImageIcon("src\\view\\image\\return2.png"));
+        this.jbutton_returnBooks.addActionListener(libraryManagementController);
+//        this.jpanel_returnBooks = new JPanel(new BorderLayout());
+//        this.jpanel_returnBooks.setBackground(new Color(85, 117, 255));
+//        this.jpanel_returnBooks.add(this.jmenu_item_returnBooks, BorderLayout.CENTER);
 
-        this.jmenu_item_exit = new JMenuItem("Exit");
-        this.jmenu_item_exit.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_exit.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_exit.setIcon(new ImageIcon("src\\view\\image\\exit.png"));
-        this.jmenu_item_exit.addActionListener(libraryManagementController);
+        this.jbutton_exit = new JButton("Exit");
+        this.jbutton_exit.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_exit.setForeground(new Color(255, 255, 255));
+        this.jbutton_exit.setBackground(new Color(25,25,112));
+        this.jbutton_exit.setIcon(new ImageIcon("src\\view\\image\\exit2.png"));
+        this.jbutton_exit.addActionListener(libraryManagementController);
 
-        this.jmenu_item_help = new JMenuItem("Help");
-        this.jmenu_item_help.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jmenu_item_help.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_help.setIcon(new ImageIcon("src\\view\\image\\help.png"));
-        this.jmenu_item_help.addActionListener(libraryManagementController);
-        this.jpanel_help = new JPanel(new BorderLayout());
-        this.jpanel_help.setBackground(new Color(0, 128, 64));
-        this.jpanel_help.add(this.jmenu_item_help, BorderLayout.CENTER);
+        this.jbutton_help = new JButton("Help");
+        this.jbutton_help.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_help.setForeground(new Color(255, 255, 255));
+        this.jbutton_help.setBackground(new Color(25,25,112));
+        this.jbutton_help.setIcon(new ImageIcon("src\\view\\image\\help2.png"));
+        this.jbutton_help.addActionListener(libraryManagementController);
+//        this.jpanel_help = new JPanel(new BorderLayout());
+//        this.jpanel_help.setBackground(new Color(85, 117, 255));
+//        this.jpanel_help.add(this.jmenu_item_help, BorderLayout.CENTER);
 
-        this.jmenu_item_search = new JMenuItem("Search");
-        this.jmenu_item_search.setFont(new Font("Tahoma", Font.BOLD, 40));
-        this.jmenu_item_search.setForeground(new Color(255, 255, 255));
-        this.jmenu_item_search.setIcon(new ImageIcon("src\\view\\image\\search.png"));
-        this.jmenu_item_search.addActionListener(libraryManagementController);
+        this.jbutton_search = new RoundButton("",50);
+        this.jbutton_search.setFont(new Font("Tahoma", Font.BOLD, 40));
+        this.jbutton_search.setForeground(new Color(255, 255, 255));
+        this.jbutton_search.setBackground(new Color(255,215,0));
+        this.jbutton_search.setIcon(new ImageIcon("src\\view\\image\\search3.png"));
+        this.jbutton_search.addActionListener(libraryManagementController);
+
+        this.jbutton_filter = new RoundButton("",50);
+        this.jbutton_filter.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_filter.setForeground(new Color(255, 255, 255));
+        this.jbutton_filter.setBackground(new Color(75,0,130));
+        this.jbutton_filter.setIcon(new ImageIcon("src\\view\\image\\filter.png"));
+        this.jbutton_filter.addActionListener(libraryManagementController);
+
+
+        JLabel jlabel_24 = new JLabel("Library");
+        jlabel_24.setFont(new Font("Tahoma", Font.BOLD, 20));
+        jlabel_24.setForeground(new Color(255, 255, 255));
+        jlabel_24.setIcon(new ImageIcon("src\\view\\image\\library2.png"));
+
 
         // phần chứa các chức năng
         this.jpanel_tool = new JPanel(new GridLayout(12, 1));
-        this.jpanel_tool.setBackground(new Color(0, 128, 64));
-        this.jpanel_tool.add(this.jpanel_home);
-        this.jpanel_tool.add(this.jpanel_Admin);
-        this.jpanel_tool.add(this.jpanel_borrowBooks);
-        this.jpanel_tool.add(this.jpanel_returnBooks);
-        this.jpanel_tool.add(this.jpanel_help);
-        this.jpanel_tool.add(this.jmenu_item_exit);
+        this.jpanel_tool.setBackground(new Color(25,25,112));
+        this.jpanel_tool.add(jlabel_24);
+        this.jpanel_tool.add(this.jbutton_home);
+        this.jpanel_tool.add(this.jbutton_Admin);
+        this.jpanel_tool.add(this.jbutton_borrowBooks);
+        this.jpanel_tool.add(this.jbutton_returnBooks);
+        this.jpanel_tool.add(this.jbutton_help);
+        this.jpanel_tool.add(this.jbutton_exit);
 
-        this.jtextField_search = new JTextField();
+        this.jtextField_search = new OvalTextField(50);
         this.jtextField_search.setFont(new Font("Tahoma", Font.BOLD, 40));
 
         // chỉ là phần tạo khoang trắng
         this.jlabel_1 = new JLabel(" ");
         this.jlabel_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_1.setBackground(new Color(0, 128, 64));
 
         // chỉ là phần tạo khoang trắng
-        this.jlabel_2 = new JLabel(" ");
+        this.jlabel_2 = new JLabel("kkkk ");
         this.jlabel_2.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_2.setBackground(new Color(0, 128, 64));
 
         // chỉ là phần tạo khoang trắng
         this.jlabel_3 = new JLabel(" kkkkk");
         this.jlabel_3.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_3.setBackground(new Color(0, 128, 64));
 
         // chỉ là phần tạo khoang trắng
         this.jlabel_8 = new JLabel("");
         this.jlabel_8.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_8.setBackground(new Color(0, 128, 64));
 
         // chỉ là phần tạo khoang trắng
         this.jlabel_9 = new JLabel("");
         this.jlabel_9.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_9.setBackground(new Color(0, 128, 64));
 
         // chỉ là phần tạo khoang trắng
         this.jlabel_10 = new JLabel("");
         this.jlabel_10.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_10.setBackground(new Color(0, 128, 64));
 
         // chỉ là phần tạo khoang trắng
         this.jlabel_11 = new JLabel("");
         this.jlabel_11.setFont(new Font("Tahoma", Font.BOLD, 10));
-        this.jlabel_11.setBackground(new Color(0, 128, 64));
+
+        this.jlabel_12 = new JLabel("");
+        this.jlabel_12.setFont(new Font("Tahoma", Font.BOLD, 10));
+
+        JLabel jlabel_20 = new JLabel("bbbbbbbb");
+        jlabel_20.setFont(new Font("Tahoma", Font.BOLD, 10));
+
 
         // phần tìm kiếm chính
-        this.jpanel_search = new JPanel(new BorderLayout());
-        this.jpanel_search.setBackground(new Color(208, 255, 208));
+        this.jpanel_search = new JPanel(new BorderLayout(10, 10));
+        this.jpanel_search.setBackground(new Color(75,0,130));
         this.jpanel_search.add(this.jtextField_search, BorderLayout.CENTER);
-        this.jpanel_search.add(this.jmenu_item_search , BorderLayout.EAST);
+        this.jpanel_search.add(this.jbutton_search , BorderLayout.EAST);
+        jpanel_search.add(jbutton_filter, BorderLayout.WEST);
 
         // nút đăng nhập\
-        this.jMenuItem_signIn = new JMenuItem("Sign In");
-        this.jMenuItem_signIn.setFont(new Font("Tahoma", Font.BOLD, 14));
-        this.jMenuItem_signIn.setForeground(new Color(255, 255, 255));
-        this.jMenuItem_signIn.setIcon(new ImageIcon("src\\view\\image\\signIn.png"));
-        this.jMenuItem_signIn.addActionListener(libraryManagementController);
+        this.jbutton_signIn = new OvalButtonLeft("        Sign In");
+        this.jbutton_signIn.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_signIn.setForeground(new Color(255, 255, 255));
+        this.jbutton_signIn.setBackground(new Color(75,0,130));
+       // this.jbutton_signIn.setIcon(new ImageIcon("src\\view\\image\\signIn.png"));
+        this.jbutton_signIn.addActionListener(libraryManagementController);
 
-        this.jpanel_sign_in_click = new JPanel(new BorderLayout());
-        this.jpanel_sign_in_click.setBackground(new Color(0,255,0));
-        this.jpanel_sign_in_click.add(jMenuItem_signIn, BorderLayout.CENTER);
+        this.jbutton_seting = new OvalButtonRight("       ");
+        this.jbutton_seting.setForeground(new Color(255, 255, 255));
+        this.jbutton_seting.setFont(new Font("Tahoma", Font.BOLD, 14));
+        this.jbutton_seting.setBackground(new Color(75,0,130));
+        this.jbutton_seting.setIcon(new ImageIcon("src\\view\\image\\menu2.png"));
+        this.jbutton_seting.addActionListener(libraryManagementController);
 
-        this.jpanel_sign_in = new JPanel(new GridLayout(1, 2));
-        this.jpanel_sign_in.setBackground(new Color(208, 255, 208));
-        this.jpanel_sign_in.add(this.jlabel_2);
-        this.jpanel_sign_in.add(this.jpanel_sign_in_click);
+        JPanel panelButtonSeting = new JPanel(new BorderLayout());
+        panelButtonSeting.setBackground(new Color(25,25,112)); // Đặt màu nền giống với JPanel chính
+
+// Đặt nút jbutton_seting vào trong JPanel này
+        panelButtonSeting.add(this.jbutton_seting, BorderLayout.CENTER);
+
+        JLabel jlabel_21 = new JLabel("  ");
+        jlabel_21.setFont(new Font("Tahoma", Font.BOLD, 10));
+        JLabel jlabel_22 = new JLabel("  ");
+        jlabel_22.setFont(new Font("Tahoma", Font.BOLD, 10));
+
+        this.jpanel_sign_in = new JPanel(new BorderLayout(5,5));
+        this.jpanel_sign_in.setBackground(new Color(25,25,112));
+
+        this.jpanel_sign_in.add(this.jbutton_signIn, BorderLayout.CENTER);
+        this.jpanel_sign_in.add(panelButtonSeting, BorderLayout.EAST);
+        this.jpanel_sign_in.add(jlabel_21, BorderLayout.NORTH);
+        this.jpanel_sign_in.add(jlabel_22, BorderLayout.SOUTH);
+
+        this.jpanel_befor_tool = new JPanel(new BorderLayout(5,5));
+        this.jpanel_befor_tool.setBackground(new Color(25,25,112));
+        jpanel_befor_tool.add(this.jlabel_1, BorderLayout.CENTER);
+        jpanel_befor_tool.add(this.jpanel_sign_in, BorderLayout.EAST);
+
 
         // phần tìm kiếm gồm cá các chức năng khác
         this.jpanel_search_tool = new JPanel(new GridLayout(1, 2));
-        this.jpanel_search_tool.setBackground(new Color(208, 255, 208));
+        this.jpanel_search_tool.setBackground(new Color(75,0,130));
         this.jpanel_search_tool.add(this.jpanel_search);
-        this.jpanel_search_tool.add(this.jpanel_sign_in);
+        this.jpanel_search_tool.add(this.jlabel_12);
+
+        JLabel jlabel_13 = new JLabel("Tên sách");
+
+        jlabel_13.setFont(new Font("Tahoma", Font.BOLD, 20));
+        jlabel_13.setBackground(new Color(85, 117, 255));
+
+        this.jpanel_title = new JPanel(new BorderLayout(1,6));
+        jpanel_title.setBackground(new Color(25,25,112));
+        jpanel_title.add(jlabel_13);
 
         // phần tìm kiếm bao trùm
-        this.jpanel_search_befor = new JPanel(new BorderLayout());
-        this.jpanel_search_befor.setBackground(new Color(0, 128, 64));
-        this.jpanel_search_befor.add(this.jpanel_search_tool, BorderLayout.CENTER);
-        this.jpanel_search_befor.add(this.jlabel_1, BorderLayout.NORTH);
+        this.jpanel_befor = new JPanel(new BorderLayout(10,10));
+        this.jpanel_befor.setBackground(new Color(75,0,130));
+        this.jpanel_befor.add(this.jpanel_search_tool, BorderLayout.CENTER);
+        this.jpanel_befor.add(this.jpanel_befor_tool, BorderLayout.NORTH);
+        this.jpanel_befor.add(this.jpanel_title, BorderLayout.SOUTH);
+
+
 
         //phần lưu các 100 từ ngữ bất kì
-        this.jpanel_center = new JPanel(new GridLayout(100, 1 ));
-        JScrollPane scrollPane = new JScrollPane(this.jpanel_center);
+        this.jpanel_center = new JPanel(new GridLayout(100, 1, 10, 10 ));
+        MinimalScrollPane.createMinimalScrollPane(this.jpanel_center);
+        JScrollPane scrollPane = MinimalScrollPane.createMinimalScrollPane(this.jpanel_center);
         for (int i = 0; i < 100; i++) {
             JPanel panel_word = createPanelWord(i);
             wordPanels.add(panel_word);  // Add to the list
@@ -279,57 +343,60 @@ public class LibraryManagementView extends JFrame {
 
 
         // phần giao diện chính
-        this.contentPane = new JPanel(new BorderLayout());
-        this.contentPane.setBackground(new Color(0, 128, 64));
-        this.contentPane.add(this.jpanel_search_befor, BorderLayout.NORTH);
+        this.contentPane = new JPanel(new BorderLayout(10,10));
+        this.contentPane.setBackground(new Color(225,255,255));
+        this.contentPane.add(this.jpanel_befor, BorderLayout.NORTH);
         this.contentPane.add(scrollPane, BorderLayout.CENTER);
 
         ImageIcon icon = new ImageIcon("src\\view\\image\\title.png");
         this.setIconImage(icon.getImage());
         this.setLayout(new BorderLayout());
-        this.setBackground(new Color(0, 128, 64));
+        this.setBackground(new Color(25,25,112));
         this.add(contentPane, BorderLayout.CENTER);
         this.add(jpanel_tool, BorderLayout.WEST);
 
     }
     public JPanel createPanelWord(int index) {
-        JPanel panel_word = new JPanel();
-        panel_word.setBackground(new Color(208, 255, 208));
-        panel_word.setLayout(new GridLayout(1, 6));
+        JPanel jpanel_book = new JPanel(new BorderLayout(10, 10));
+        jpanel_book.setBackground(new Color(255, 255, 255));
 
-        JLabel lblNewLabel = new JLabel("Label " + index);
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        JPanel panel_word = new JPanel();
+        panel_word.setBackground(new Color(255, 255, 255));
+        panel_word.setLayout(new GridLayout(1, 3, 10, 10));
+
+        JMenuItem lblNewLabel = new JMenuItem("Labelkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk " + index);
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        lblNewLabel.setBackground(new Color(255, 255, 255));
         lblNewLabel.setForeground(new Color(64, 0, 128));
-        panel_word.add(lblNewLabel);
+        jpanel_book.add(lblNewLabel, BorderLayout.CENTER);
 
         JLabel lblNewLabel_1 = new JLabel("");
         panel_word.add(lblNewLabel_1);
 
-        JMenuItem jMenuItem_sound = new JMenuItem("");
-        jMenuItem_sound.setFont(new Font("Segoe UI", Font.ITALIC, 20));
-        jMenuItem_sound.setIcon(new ImageIcon("src\\view\\image\\volume.png"));
-        panel_word.add(jMenuItem_sound);
+        JButton jbutton_borow = new OvalButton("Mượn");
+        jbutton_borow.setBackground(new Color(75,0,130));
+        jbutton_borow.setFont(new Font("Segoe UI", Font.ITALIC, 10));
+        jbutton_borow.setForeground(new Color(255, 255, 255));
+        jbutton_borow.setIcon(new ImageIcon("src\\view\\image\\plus.png"));
+        panel_word.add(jbutton_borow);
 
-        JCheckBox chckbxNewCheckBox = new JCheckBox("Yêu thích");
-        chckbxNewCheckBox.setFont(new Font("Tahoma", Font.ITALIC, 20));
-        chckbxNewCheckBox.setBackground(new Color(208, 255, 208));
+        JButton jbotton_return = new OvalButton("Trả");
+        jbotton_return.setBackground(new Color(25,25,112));
+        jbotton_return.setFont(new Font("Tahoma", Font.ITALIC, 10));
+        jbotton_return.setForeground(new Color(255, 255, 255));
+        jbotton_return.setIcon(new ImageIcon("src\\view\\image\\minus.png"));
+        panel_word.add(jbotton_return);
 
-        // Thêm icon vào JCheckBox
-        ImageIcon uncheckedIcon = new ImageIcon("src\\view\\image\\heart_1.png");
-        ImageIcon checkedIcon = new ImageIcon("src\\view\\image\\heart_2.png");
+        JButton jbutton_see = new OvalButton("Xem");
+        jbutton_see.setBackground(new Color(25,25,112));
+        jbutton_see.setFont(new Font("Segoe UI", Font.ITALIC, 10));
+        jbutton_see.setForeground(new Color(255, 255, 255));
+        jbutton_see.setIcon(new ImageIcon("src\\view\\image\\see.png"));
+        panel_word.add(jbutton_see);
 
-        // Đặt icon khi checkbox chưa được chọn
-        chckbxNewCheckBox.setIcon(uncheckedIcon);
-        // Đặt icon khi checkbox được chọn
-        chckbxNewCheckBox.setSelectedIcon(checkedIcon);
-        panel_word.add(chckbxNewCheckBox);
+        jpanel_book.add(panel_word, BorderLayout.EAST);
 
-        JMenuItem mntmNewMenuItem = new JMenuItem("Dowload");
-        mntmNewMenuItem.setFont(new Font("Segoe UI", Font.ITALIC, 20));
-        mntmNewMenuItem.setIcon(new ImageIcon("src\\view\\image\\dowload.png"));
-        panel_word.add(mntmNewMenuItem);
-
-        return panel_word;
+        return jpanel_book;
     }
     public void selectHome() {
         homeView.selectHome();
@@ -371,7 +438,7 @@ public class LibraryManagementView extends JFrame {
         adminView.adminTool();
     }
 
-    public void addHoverEffect(JMenuItem menuItem) {
+    public void addHoverEffect(JButton menuItem) {
         menuItem.addMouseListener(new MouseAdapter() {
             Color originalColor = menuItem.getForeground();
 
@@ -400,23 +467,23 @@ public class LibraryManagementView extends JFrame {
 
     public void setColorTool(String change) {
         if(this.change.equals("Home")||this.change.equals("")) {
-            this.jmenu_item_home.setForeground(new Color(255, 255, 255));
-            this.jpanel_home.setBackground(new Color(0, 128, 64));
+            this.jbutton_home.setForeground(new Color(255, 255, 255));
+            this.jbutton_home.setBackground(new Color(25,25,112));
         }else if(this.change.equals("Borrow")) {
-            this.jmenu_item_borrowBooks.setForeground(new Color(255, 255, 255));
-            this.jpanel_borrowBooks.setBackground(new Color(0, 128, 64));
+            this.jbutton_borrowBooks.setForeground(new Color(255, 255, 255));
+            this.jbutton_borrowBooks.setBackground(new Color(25,25,112));
         }else if(this.change.equals("Return")) {
-            this.jmenu_item_returnBooks.setForeground(new Color(255, 255, 255));
-            this.jpanel_returnBooks.setBackground(new Color(0, 128, 64));
+            this.jbutton_returnBooks.setForeground(new Color(255, 255, 255));
+            this.jbutton_returnBooks.setBackground(new Color(25,25,112));
         }else if(this.change.equals("Help")) {
-            this.jmenu_item_help.setForeground(new Color(255, 255, 255));
-            this.jpanel_help.setBackground(new Color(0, 128, 64));
+            this.jbutton_help.setForeground(new Color(255, 255, 255));
+            this.jbutton_help.setBackground(new Color(25,25,112));
         }else if(this.change.equals("Admin")) {
-            this.jmenu_item_Admin.setForeground(new Color(255, 255, 255));
-            this.jpanel_Admin.setBackground(new Color(0, 128, 64));
+            this.jbutton_Admin.setForeground(new Color(255, 255, 255));
+            this.jbutton_Admin.setBackground(new Color(25,25,112));
         }else if(this.change.equals("UserInfor")) {
-            this.jmenu_item_home.setForeground(new Color(255, 255, 255));
-            this.jpanel_home.setBackground(new Color(0, 128, 64));
+            this.jbutton_home.setForeground(new Color(255, 255, 255));
+            this.jbutton_home.setBackground(new Color(25,25,112));
         }
     }
 

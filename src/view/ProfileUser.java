@@ -16,7 +16,7 @@ public class ProfileUser {
     public void profileuser(Student student) {
 
         contentPane_profileUser = new JPanel();
-        contentPane_profileUser.setBackground(new Color(208, 255, 208));
+        contentPane_profileUser.setBackground(new Color(224,255,255));
         contentPane_profileUser.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane_profileUser.setLayout(null); // Setting layout
 
@@ -51,7 +51,7 @@ public class ProfileUser {
         contentPane_profileUser.add(jlabel_profileUser_soSachMuon);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(169, 243, 196));
+        panel_1.setBackground(new Color(224,255,255));
         panel_1.setBounds(42, 449, 1176, 299);
         contentPane_profileUser.add(panel_1);
         panel_1.setLayout(new BorderLayout(0, 0));

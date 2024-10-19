@@ -12,8 +12,8 @@ public class BorrowView {
         this.libraryManagementView.clearPanel();
         this.libraryManagementView.setColorTool(this.libraryManagementView.change);
         this.libraryManagementView.change = "Borrow";
-        this.libraryManagementView.jmenu_item_borrowBooks.setForeground(new Color(64, 0, 128));
-        this.libraryManagementView.jpanel_borrowBooks.setBackground(new Color(154,205,50));
+        this.libraryManagementView.jbutton_borrowBooks.setForeground(new Color(64, 0, 128));
+        this.libraryManagementView.jbutton_borrowBooks.setBackground(new Color(0,191,255));
 
         // Tạo một JButton mới
         JButton gameButton = new JButton("Start Game");

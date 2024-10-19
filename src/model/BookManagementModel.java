@@ -10,7 +10,7 @@ public class BookManagementModel {
         this.books = new ArrayList<>();
     }
 
-    // Đọc dữ liệu từ file .txt và lưu vào danh sách books
+    
     public void loadBooksFromFile(String filePath) {
         BufferedReader reader = null;
         try {

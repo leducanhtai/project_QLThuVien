@@ -8,7 +8,7 @@ import adminFunction.AdminFunction;
 //import adminFunction.Login;
 import model.Student;
 import view.LibraryManagementView;
-import view.sign_in_up.SignIn;
+
 
 import javax.swing.table.DefaultTableModel;
 
@@ -17,13 +17,13 @@ public class LibraryManagementController implements ActionListener{
     private AdminFunction adminFunction;
 
     private UserController userController;
-    private SigInController  sigInController;
+//    private SigInController  sigInController;
     private AdminController adminController;
 
     public LibraryManagementController(LibraryManagementView libraryManagementView) {
         this.libraryManagementView = libraryManagementView;
         this.userController = new UserController(libraryManagementView);
-        this.sigInController = new SigInController(libraryManagementView);
+//        this.sigInController = new SigInController(libraryManagementView);
         this.adminController = new AdminController(libraryManagementView);
     }
 
@@ -49,11 +49,12 @@ public class LibraryManagementController implements ActionListener{
         }else if(src.equals("Đăng nhập")) {
             this.adminController.adminDangNhap();
         }else if(src.equals("     SIGN IN")) {
-            sigInController.dangNhap();
+//            sigInController.dangNhap();
         }else if(src.equals("UserInfor")) {
             userController.displayUserInfo();
-        }else if(src.equals("Edit User")) {
+        }else if(src.equals("Borrowing User")) {
             userController.editUser();
+            System.out.println("Borrowing User");
         }else if(src.equals("Search User")) {
             userController.clickSearch();
         }
