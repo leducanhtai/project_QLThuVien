@@ -1,7 +1,6 @@
 package adminFunction;
 
 import view.LibraryManagementView;
-//Test github
 
 public class AdminFunction {
 
